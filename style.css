@@ -12,6 +12,14 @@ a {
   text-decoration: none;
   font-weight: bold;
   color: black; }
+  a:hover {
+    padding: 0 8px;
+    color: #0091FF; }
+
+ul li a {
+  -webkit-transition-property: opacity, -webkit-transform, color, background-color, padding;
+  -webkit-transition-duration: 0.2s;
+  -webkit-transition-timing-function: ease-out; }
 
 h1 {
   padding: 80px 0 10px;
@@ -51,3 +59,11 @@ code {
 
 #download {
   float: right; }
+  #download a img {
+    -webkit-transition-property: opacity, -webkit-transform, color, background-color, padding;
+    -webkit-transition-duration: 0.2s;
+    -webkit-transition-timing-function: ease-out; }
+    #download a img:hover {
+      z-index: 10;
+      -webkit-transform: translate(30px, 0) rotate(-25deg) scale(1.2);
+      opacity: 0.5; }
