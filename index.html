@@ -1,106 +1,60 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-
-	<title>nakajima/rack-flash @ GitHub</title>
-	
-	<style type="text/css">
-		body {
-  		margin-top: 1.0em;
-  		background-color: #ffffff;
-		  font-family: "helvetica"; 
-  		color: #000000;
-    }
-    #container {
-      margin: 0 auto;
-      width: 700px;
-    }
-		h1 { font-size: 3.8em; color: #000000; margin-bottom: 3px; }
-		h1 .small { font-size: 0.4em; }
-		h1 a { text-decoration: none }
-		h2 { font-size: 1.5em; color: #000000; }
-    h3 { color: #000000; }
-    a { color: #000000; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; }
-    .download { float: right; }
-		pre { background: #000; color: #fff; padding: 15px;}
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .footer { text-align:center; padding-top:30px; font-style: italic; }
-    
-    pre {
-		  font-family: Bitstream Vera Sans Mono;
-		  font-size: 0.9em;
-		}
-		code {
-		  font-family: Bitstream Vera Sans Mono;
-		  font-size: 0.9em;
-		  background: #eef;
-		  padding: 2px 3px;
-		}
-		
-		pre code {
-		  font-size: 1em;
-		}
-		
-		.highlight pre {
-		  background: #eef;
-		  color: #222;
-		  padding: 10px;
-		}
-		
-		.c1 {
-		  color: #555;
-		}
-		
-		.s2, .s1 {
-		  color: #f09;
-		}
-		
-		.ss, .kp {
-		  color: #009ECC;
-		}
-		
-		.k {
-		  color: #12A4E0;
-		}
-		
-		.mi {
-		  color: #52B7E0;
-		  font-weight: bold;
-		}
-	</style>
-	
-</head>
-
-<body>
-  <a href="http://github.com/visionmedia/jspec"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
-  
-  <div id="container">
-
-    <div class="download">
-      <a href="http://github.com/visionmedia/jspec/zipball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
-      <a href="http://github.com/visionmedia/jspec/tarball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>JSpec - JavaScript Testing Framework</title>
+    <link href='style.css' rel='stylesheet' />
+  </head>
+  <body>
+    <a href='http://github.com/visionmedia/jspec'>
+      <img alt='Fork me on GitHub' id='ribbon' src='http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png' />
+    </a>
+  </body>
+  <div id='container'>
+    <div id='download'>
+      <a href='http://github.com/visionmedia/jspec/zipball/master'>
+        <img src='http://github.com/images/modules/download/zip.png' />
+      </a>
+      <a href='http://github.com/visionmedia/jspec/tarball/master'>
+        <img src='http://github.com/images/modules/download/tar.png' />
+      </a>
     </div>
+    <h1>
+      JSpec
+      <em>javascript bdd framework</em>
+    </h1>
+    <p>
+      JSpec is a extremely small, yet very powerful testing framework. Utilizing its own custom grammar and
+      pre-processor, JSpec can operate in ways that no other JavaScript testing framework can. This includes
+      many helpful shorthand literals, a very intuitive / readable syntax, as well as not polluting core
+      object prototypes.
+    </p>
+    <h2>Example</h2>
+    <code>
       
-    <h1><a href="http://github.com/visionmedia/jspec">JSpec</a> 
-      <span class="small">by <a href="http://github.com/visionmedia">vision-media.ca</a></small></h1>
-
-<h2>Authors</h2>
-<p>TJ Holowaychuk (tj@vision-media.ca)
-<br/>
-<br/>      </p>
-      
-    <div class="footer">
-      get the source code on GitHub : <a href="http://github.com/visionmedia/jspec">nakajima/rack-flash</a>
+      describe 'JSpec'
+        
+        before_each
+          .best_frameworks = ['JSpec']
+        end
+        
+        it 'should be among the best'
+          .best_frameworks.should_include 'JSpec'
+        end
+        
+      end
+    </code>
+    <h2>Misc</h2>
+    <ul>
+      <li>
+        Get the
+        <a href='http://github.com/visionmedia/jspec.tmbundle/tree/master'>TextMate bundle</a>
+      </li>
+    </ul>
+    <h2>Authors</h2>
+    <p>TJ Holowaychuk (tj@vision-media.ca)</p>
+    <div class='footer'>
+      get the source on GitHub :
+      <a href='http://github.com/visionmedia/jspec'>visionmedia/jspec</a>
     </div>
-    
   </div>
-
-  
-</body>
 </html>

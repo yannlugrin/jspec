@@ -1,0 +1,12 @@
+
+describe 'JSpec'
+  
+  before_each
+    .best_frameworks = ['JSpec']
+  end
+  
+  it 'should be among the best'
+    .best_frameworks.should_include 'JSpec'
+  end
+  
+end
