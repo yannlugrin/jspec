@@ -28,6 +28,20 @@
       many helpful shorthand literals, a very intuitive / readable syntax, as well as not polluting core
       object prototypes.
     </p>
+    <h2>Features</h2>
+    <ul>
+      <li>Sexiest syntax of them all</li>
+      <li>Does not pollute core object prototypes</li>
+      <li>Async support (jQuery only at the moment)</li>
+      <li>Evalute any number of suites (or cherry pick specific suites loaded)</li>
+      <li>Evaluation contexts for providing helper methods and properties</li>
+      <li>Allows parens to be optional when using matchers ('foobar'.should_include 'foo')</li>
+      <li>Extremely simple matcher declaration</li>
+      <li>Several helpful formatters (dom, console, terminal, ...)</li>
+      <li>Custom formatters</li>
+      <li>Profiling</li>
+      <li>Tiny (10 kb compressed, 800-ish LOC)</li>
+    </ul>
     <h2>Example</h2>
     <code>
       
@@ -43,11 +57,51 @@
         
       end
     </code>
+    <h2>JSpec vs Screw.Unit</h2>
+    <h3>Screw.Unit</h3>
+    <code>
+      describe('Man', function() {
+        
+        var man;
+        
+        before(function() {
+          man = new Man({luck: 5});
+        });
+      
+        describe('#decrement_luck', function() {
+          it("decrements the luck field by the given amount", function() {
+            man.decrement_luck(3);
+            expect(man.luck()).to(equal, 2)
+          });
+        });
+      
+      });
+    </code>
+    <h3>JSpec</h3>
+    <code>
+      describe 'Man'
+        
+        before
+          .man = new Man({ luck : 5 })
+        end
+      
+        it 'should decrement luck by the given amount'
+          .man.decrement_luck(3)
+          .man.luck.should_equal 2
+        end
+      
+      end
+    </code>
     <h2>Misc</h2>
     <ul>
       <li>
         Get the
         <a href='http://github.com/visionmedia/jspec.tmbundle/tree/master'>TextMate bundle</a>
+      </li>
+      <li>
+        View the
+        <a href='http://github.com/visionmedia/jspec'>Readme</a>
+        for more documentation
       </li>
     </ul>
     <h2>Authors</h2>

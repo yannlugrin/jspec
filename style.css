@@ -2,11 +2,13 @@ body {
   margin-top: 30px;
   font-family: "Helvetica";
   font-size: 14px;
+  line-height: 1.5;
   color: black; }
 
 a {
   text-decoration: none;
-  color: #0091FF; }
+  font-weight: bold;
+  color: black; }
 
 h1 {
   padding: 80px 0 10px;
@@ -16,6 +18,10 @@ h1 {
     font-size: 15px; }
 
 h2 {
+  margin: 40px 0 15px 0;
+  padding-top: 20px;
+  border: 0;
+  border-top: 1px solid #aaa;
   font-size: 20px; }
 
 code {
@@ -25,11 +31,6 @@ code {
   font-family: "Bitstream Vera Sans Mono";
   white-space: pre;
   color: white; }
-
-hr {
-  border: 0;
-  width: 80%;
-  border-bottom: 1px solid #aaa; }
 
 .footer {
   padding-top: 30px;

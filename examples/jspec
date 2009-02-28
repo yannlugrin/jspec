@@ -1,0 +1,12 @@
+describe 'Man'
+  
+  before
+    .man = new Man({ luck : 5 })
+  end
+
+  it 'should decrement luck by the given amount'
+    .man.decrement_luck(3)
+    .man.luck.should_equal 2
+  end
+
+end

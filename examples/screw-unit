@@ -1,0 +1,16 @@
+describe('Man', function() {
+  
+  var man;
+  
+  before(function() {
+    man = new Man({luck: 5});
+  });
+
+  describe('#decrement_luck', function() {
+    it("decrements the luck field by the given amount", function() {
+      man.decrement_luck(3);
+      expect(man.luck()).to(equal, 2)
+    });
+  });
+
+});
