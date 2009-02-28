@@ -5,6 +5,9 @@ body {
   line-height: 1.5;
   color: black; }
 
+a img {
+  border: none !important; }
+
 a {
   text-decoration: none;
   font-weight: bold;
