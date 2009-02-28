@@ -57,41 +57,6 @@
         
       end
     </code>
-    <h2>JSpec vs Screw.Unit</h2>
-    <h3>Screw.Unit</h3>
-    <code>
-      describe('Man', function() {
-        
-        var man;
-        
-        before(function() {
-          man = new Man({luck: 5});
-        });
-      
-        describe('#decrement_luck', function() {
-          it("decrements the luck field by the given amount", function() {
-            man.decrement_luck(3);
-            expect(man.luck()).to(equal, 2)
-          });
-        });
-      
-      });
-    </code>
-    <h3>JSpec</h3>
-    <code>
-      describe 'Man'
-        
-        before
-          .man = new Man({ luck : 5 })
-        end
-      
-        it 'should decrement luck by the given amount'
-          .man.decrement_luck(3)
-          .man.luck.should_equal 2
-        end
-      
-      end
-    </code>
     <h2>Misc</h2>
     <ul>
       <li>
