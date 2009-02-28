@@ -1,12 +1,18 @@
 
-describe 'JSpec'
+describe 'Shopping Cart'
   
   before_each
-    .best_frameworks = ['JSpec']
+    .cart = new ShoppingCart
   end
   
-  it 'should be among the best'
-    .best_frameworks.should_include 'JSpec'
+  it 'should add products'
+    .cart.add('cookie')
+    .cart.products.should_have_length 1
+  end
+
+  it 'should randomly add promotional items'
+    .cart.addPromotionalItems()
+    .cart.products.should_have_length_within 0..2
   end
   
 end
