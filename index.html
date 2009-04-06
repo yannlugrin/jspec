@@ -3,6 +3,8 @@
   <head>
     <title>JSpec - JavaScript Testing Framework</title>
     <link href='style.css' rel='stylesheet' />
+    <script src='javascripts/jquery.js'></script>
+    <script src='javascripts/app.js'></script>
   </head>
   <body>
     <a href='http://github.com/visionmedia/jspec'>
@@ -54,8 +56,11 @@
     <div class='left'>
       <h3>Core</h3>
       <ul class='matchers'>
+        <li>be</li>
+        <li>eql</li>
         <li>equal</li>
-        <li>be_a, be_an</li>
+        <li>be_a</li>
+        <li>be_an</li>
         <li>be_at_least</li>
         <li>be_at_most</li>
         <li>be_null</li>
@@ -74,14 +79,15 @@
         <li>include</li>
         <li>match</li>
         <li>respond_to</li>
-        <li>eql, be</li>
       </ul>
     </div>
     <div class='right'>
       <h3>jQuery</h3>
       <ul class='matchers'>
-        <li>have_tag, have_one</li>
-        <li>have_tags, have_many</li>
+        <li>have_tag</li>
+        <li>have_one</li>
+        <li>have_tags</li>
+        <li>have_many</li>
         <li>have_child</li>
         <li>have_children</li>
         <li>have_text</li>

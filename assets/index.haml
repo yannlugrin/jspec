@@ -3,6 +3,8 @@
   %head
     %title JSpec - JavaScript Testing Framework
     %link{ :rel => 'stylesheet', :href => 'style.css' }
+    %script{ :src => 'javascripts/jquery.js' }
+    %script{ :src => 'javascripts/app.js' }
   %body
     %a{ :href => PROJECT_URL }
       %img#ribbon{ :src => 'http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png', :alt => 'Fork me on GitHub' }
@@ -57,8 +59,11 @@
     %div.left
       %h3 Core
       %ul.matchers
+        %li be
+        %li eql
         %li equal          
-        %li be_a, be_an    
+        %li be_a    
+        %li be_an    
         %li be_at_least    
         %li be_at_most     
         %li be_null        
@@ -77,13 +82,14 @@
         %li include        
         %li match          
         %li respond_to     
-        %li eql, be
 
     %div.right
       %h3 jQuery
       %ul.matchers
-        %li have_tag, have_one      
-        %li have_tags, have_many 
+        %li have_tag      
+        %li have_one      
+        %li have_tags 
+        %li have_many 
         %li have_child           
         %li have_children        
         %li have_text            

@@ -84,3 +84,16 @@ img.rounded {
 .right {
   float: right;
   width: 48%; }
+
+ul.matchers {
+  margin: 0;
+  padding: 0 0 0 15px; }
+  ul.matchers li {
+    -webkit-transition-property: opacity, -webkit-transform, color, background-color, padding;
+    -webkit-transition-duration: 0.2s;
+    -webkit-transition-timing-function: ease-out;
+    list-style: none; }
+    ul.matchers li:hover {
+      cursor: pointer;
+      padding: 0 5px;
+      color: #0091FF; }
