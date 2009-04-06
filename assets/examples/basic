@@ -1,18 +1,20 @@
-describe 'Shopping cart'
-
+describe 'ShoppingCart'
   before_each
     .cart = new ShoppingCart
   end
-
-  it 'should add products'
-    .cart.addProduct('cookie')
-    .cart.products.should_include 'cookie'
-    .cart.should_not_be_empty
+  
+  describe 'addProducts'
+    it 'should add several products'
+      .cart.addProduct('cookie')
+      .cart.addProduct('icecream')
+      .cart.should.have 2, 'products'
+    end
   end
 
-  it 'should throw and error when checking out with an empty cart'
-    .cart.products = []
-    -{ this.cart.checkout() }.should_throw_error
+  describe 'checkout'
+    it 'throw an error when checking out with no products'
+      .cart.clear()
+      -{ .cart.checkout() }.should.throw_error
+    end
   end
-
 end

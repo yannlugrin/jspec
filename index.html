@@ -28,19 +28,23 @@
     <h2>Features</h2>
     <ul>
       <li>Sexiest syntax of them all</li>
+      <li>Framework / DOM independent</li>
+      <li>Nested describes</li>
       <li>Does not pollute core object prototypes</li>
-      <li>Async support (jQuery only at the moment)</li>
-      <li>Evalute any number of suites (or cherry pick specific suites loaded)</li>
-      <li>Evaluation contexts for providing helper methods and properties</li>
-      <li>Allows parens to be optional when using matchers ('foobar'.should_include 'foo')</li>
-      <li>Extremely simple matcher declaration</li>
+      <li>Async support</li>
+      <li>Extremely simple and intuitive matcher declaration</li>
+      <li>Over 45 core matchers</li>
+      <li>Allows parens to be optional when using matchers to increase readability</li>
       <li>Several helpful formatters (dom, console, terminal, ...)</li>
-      <li>Custom formatters</li>
+      <li>Assertion graphs displaying how many, and which assertions pass or failed</li>
+      <li>Default / customizable evaluation contexts</li>
+      <li>DOM sandbox support</li>
+      <li>Great looking default DOM theme</li>
       <li>Profiling</li>
-      <li>Tiny (10 kb compressed, 800-ish LOC)</li>
+      <li>Tiny (15 kb compressed, 1000-ish LOC)</li>
     </ul>
     <h2>Example</h2>
-    <pre>describe 'Shopping cart'&#x000A;&#x000A;  before_each&#x000A;    .cart = new ShoppingCart&#x000A;  end&#x000A;&#x000A;  it 'should add products'&#x000A;    .cart.addProduct('cookie')&#x000A;    .cart.products.should_include 'cookie'&#x000A;    .cart.should_not_be_empty&#x000A;  end&#x000A;&#x000A;  it 'should throw and error when checking out with an empty cart'&#x000A;    .cart.products = []&#x000A;    -{ this.cart.checkout() }.should_throw_error&#x000A;  end&#x000A;&#x000A;end</pre>
+    <pre>describe 'ShoppingCart'&#x000A;  before_each&#x000A;    .cart = new ShoppingCart&#x000A;  end&#x000A;  &#x000A;  describe 'addProducts'&#x000A;    it 'should add several products'&#x000A;      .cart.addProduct('cookie')&#x000A;      .cart.addProduct('icecream')&#x000A;      .cart.should.have 2, 'products'&#x000A;    end&#x000A;  end&#x000A;&#x000A;  describe 'checkout'&#x000A;    it 'throw an error when checking out with no products'&#x000A;      .cart.clear()&#x000A;      -{ .cart.checkout() }.should.throw_error&#x000A;    end&#x000A;  end&#x000A;end</pre>
     <h2>Misc</h2>
     <ul>
       <li>
