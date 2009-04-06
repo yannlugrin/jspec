@@ -37,6 +37,7 @@
       %li Assertion graphs displaying how many, and which assertions pass or failed
       %li Default / customizable evaluation contexts
       %li DOM sandbox support
+      %li Optionally display failures only, speeding up development
       %li Great looking default DOM theme
       %li Profiling
       %li Tiny (15 kb compressed, 1000-ish LOC)
@@ -44,6 +45,66 @@
     %h2 Example
 
     %pre= example 'basic'
+
+    %h2 DOM Formatter
+    %p The DOM formatter is the default of JSpec, featuring assertion graphs and a sleek white style.
+    %img{ :src => 'http://img396.imageshack.us/img396/8868/jspecdom.png', :alt => 'JSpec DOM Formatter', :class => 'rounded' }
+
+    %h2 Matchers
+
+    %p For the latest updates please view JSpec's README, as this list may be outdated.
+
+    %div.left
+      %h3 Core
+      %ul
+        %li equal          
+        %li be_a, be_an    
+        %li be_at_least    
+        %li be_at_most     
+        %li be_null        
+        %li be_empty       
+        %li be_true        
+        %li be_false       
+        %li be_type        
+        %li be_greater_than
+        %li be_less_than   
+        %li have           
+        %li have_at_least  
+        %li have_at_most   
+        %li have_within    
+        %li be_within      
+        %li have_length    
+        %li include        
+        %li match          
+        %li respond_to     
+        %li eql, be
+
+    %div.right
+      %h3 jQuery
+      %ul
+        %li have_tag, have_one      
+        %li have_tags, have_many 
+        %li have_child           
+        %li have_children        
+        %li have_text            
+        %li have_attr            
+        %li have_value     
+        %li have_class
+        %li be_visible
+        %li be_hidden
+        %li be_enabled
+        %li be_disabled
+        %li be_a_submit_input
+        %li be_a_text_input
+        %li be_a_image_input
+        %li be_a_submit_input
+        %li be_a_reset_input
+        %li be_a_password_input
+        %li be_a_file_input
+        %li be_a_radio_input
+        %li be_a_checkbox_input
+    
+    %div.clear
 
     %h2 Misc
 
