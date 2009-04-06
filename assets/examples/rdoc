@@ -1,0 +1,315 @@
+
+= JSpec
+
+JSpec is a minimalistic JavaScript behavior driven development framework,
+providing simple installation, extremely low learning curve, absolutely no pollution
+to core prototypes, async request support, and incredibly sexy syntax, tons of matchers
+and much more.
+
+== Features
+
+* Sexiest syntax of them all
+* Framework / DOM independent
+* Nested describes
+* Does not pollute core object prototypes
+* Async support
+* Extremely simple and intuitive matcher declaration
+* Over 45 core matchers
+* Allows parens to be optional when using matchers to increase readability
+* Several helpful formatters (dom, console, terminal, ...)
+* Assertion graphs displaying how many, and which assertions pass or failed
+* Default / customizable evaluation contexts
+* DOM sandbox support
+* Great looking default DOM theme
+* Profiling
+* Tiny (15 kb compressed, 1000-ish LOC)
+
+== Example
+
+  describe 'ShoppingCart'
+    before_each
+      .cart = new ShoppingCart
+    end
+    
+    describe 'addProducts'
+      it 'should add several products'
+        .cart.addProduct('cookie')
+        .cart.addProduct('icecream')
+        .cart.should.have 2, 'products'
+      end
+    end
+  end
+
+== Installation
+
+Simply download JSpec and include JSpec.css and JSpec.js in your markup
+( head to the downloads section on Github, or clone this public repo).
+A div with the id of #jspec should be present for displaying when using
+the default DOM formatter, or you may pass options to report() to alter
+these default settings (view source code documentation for options). 
+
+JSpec scripts should NOT be referenced via the <script> tag, they should be
+loaded using the exec method. Below is an example:
+
+  ...
+  <script>
+    function runSuites() {
+      JSpec
+      .exec('spec.core.js')
+      .exec('spec.jquery.js')
+      .run()
+      .report()
+    }
+  </script>
+  <body onLoad="runSuites()">
+  ...
+
+You may optionally want to use sources in the /pkg directory
+for your project, since it includes compressed alternatives. 
+As mentioned throughout the documentation, options may be passed to
+report(), which are in turn passed to the formatter. This includes
+options like failuresOnly, which displays only failing suites / specs,
+etc.
+
+== Options
+
+You may alter the way JSpec operates by assigning options via the
+JSpec.options object, or by passing string-based option values via the 
+query string. For example JSpec.options.failuresOnly = true, and ?failuresOnly=1 
+will both work.
+
+* profile {bool} when enabled, uses console.time() in order to display performance information in your console log as specs are completed.
+* failuresOnly {bool} displays only failing specs, making them quick to discover and fix
+* reportToId {string} an element id to report to when using the DOM formatter
+  
+== Matchers
+
+  * Core
+  
+  - equal            ===
+  - be_a, be_an      have constructor of x
+  - be_at_least      >=
+  - be_at_most       <=
+  - be_null          == null
+  - be_empty         length of 0
+  - be_true          == true
+  - be_false         == false
+  - be_type          be type of x
+  - be_greater_than  >
+  - be_less_than     <
+  - have             object should have n of property (person.should.have(2, 'pets'))
+  - have_at_least    object should have at least n of property
+  - have_at_most     object should have a maximum n of property
+  - have_within      object should have within n..n of property (person.should.have_within(1..3, 'pets')
+  - be_within        checks if n is within the range passed
+  - have_length      length of n
+  - include          include substring, array element, or hash key
+  - match            string should match regexp x
+  - respond_to       property x should be a function
+  - eql, be          matches simple literals (strings, numbers) with == . 
+                     However composites like arrays or 'hashes' are recursively matched,
+                     meaning that [1, 2, [3]].should_eql([1, 2, [3]]) will be true.
+  
+  * jQuery
+  
+  - have_tag, have_one    have exactly one tag   
+  - have_tags, have_many  have more than one tag
+  - have_child            have exactly one child
+  - have_children         have more than one child
+  - have_text             have plain text
+  - have_attr             have an attribute, with optional value
+  - have_value     
+  - have_class
+  - be_visible
+  - be_hidden
+  - be_enabled
+  - be_disabled
+  - be_a_submit_input
+  - be_a_text_input
+  - be_a_image_input
+  - be_a_submit_input
+  - be_a_reset_input
+  - be_a_password_input
+  - be_a_file_input
+  - be_a_radio_input
+  - be_a_checkbox_input
+
+== Helpers
+
+  * Core
+
+  - sandbox     used to generate new DOM sandbox
+                
+  * jQuery      
+                
+  - sandbox     used to generate new DOM sandbox, using jQuery object
+  - element     same as invoking jQuery, just reads better and no need to worry about $ collisions
+  - elements    alias of element
+
+== Custom Contexts
+
+Custom contexts can be applied to supply helper
+methods or properties to all subsequent bodies (other hooks, or specs).
+
+In most cases the default context will suffice, in combination with the
+'this' keyword. Keep in mind that when replacing the default context
+you will loose functionality provided by it, unless you manually merge it
+into your custom context.
+
+To reset the context simply assign null to obtain the original context.
+
+  ...
+  before
+    JSpec.context = { foo : 'bar' }
+  end
+
+  after
+    JSpec.context = null
+  end
+
+  it 'will work ;)'
+    this.foo.should_equal 'bar'
+  end
+  ...
+
+== Async Support
+
+Currently only jspec.jquery.js supports async requests. JSpec uses jQuery.ajaxSetup and sets all
+requests to sync, which preserves execution order, and reports correctly.
+
+  it 'should load mah cookies (textfile)'
+    $.post('async', function(text){
+      text.should_eql 'cookies!'
+    })
+  end
+
+== Pre-processor
+
+The pre-processing capability of JSpec is extremely powerful. Your JavaScript
+code is not necessarily what it seems. For example when you seemingly invoke a
+object's prototype like below:
+
+  'foobar'.should.include 'bar'
+
+First parens are added:
+
+  'foobar'.should.include('bar')
+
+Secondly the matcher invocation is converted to a non-polluting match() call:
+
+  JSpec.match('foobar', 'should', 'include', 'bar')
+
+This also means instead of:
+
+  var object = { foo : 'bar' }
+  object.should.include 'foo'
+
+We can do:
+ 
+  { foo : 'bar' }.should.include 'foo'
+
+=== Closure Literal
+
+These are equivalent:
+
+  -{ throw 'test' }.should.throw_error
+  function() { throw 'test' }.should.throw_error
+
+=== Inclusive Range Literal
+
+The following expands to the array of [1,2,3,4,5]
+
+  n.should.be_within 1..5
+
+=== This Literal
+
+Commonly throughout using JSpec you will often need to do things like the following,
+while referencing 'this.cart' throughout your specs:
+
+  before
+    this.cart = new ShoppingCart
+  end
+
+Thanks to the pre-processor we can simply use the terse alternative below:
+
+  ...
+  before
+    .cart = new ShoppingCart
+  end
+
+  it '...'
+    .cart.should.have 4, 'products'
+  end
+  ...
+
+Alternatively you may utilize literal javascript outside of the closures:
+
+  ...
+  cart = new ShoppingCart
+
+  it '...'
+    cart.should.have 4, 'products'
+  end
+  ...
+
+== Formatters
+
+=== DOM
+  
+Clean attractive HTML reporting
+
+=== Console
+
+Reporting utilizing the console object (tested using Firebug and Safari 4)
+
+=== Terminal
+
+Coming soon
+
+== Automated Testing
+
+The core JSpec team utilizes the visionmedia-bind Ruby gem in order to
+automate testing between several browsers simultaneously. Head over to
+http://visionmedia.github.com/bind/ for more information or:
+
+  $ sudo gem install visionmedia-bind
+
+Then you may execute commands such as this to get up and running with your
+automated testing. The command below simply refreshes our spec HTML page
+in Firefox and Safari, when any JavaScript file matching spec/*.js or lib/*.js 
+is altered. 
+
+  $ rbind refresh spec/spec.html --paths 'spec/*.js','lib/*.js' --interval 1 --verbose --browsers Safari,Firefox
+
+== More Information
+
+* Get the TextMate bundle at https://github.com/visionmedia/jspec.tmbundle/tree
+
+* For more information consult the JSpec source code documentation or visit http://visionmedia.github.com/jspec
+
+== License 
+
+(The MIT License)
+
+Copyright (c) 2008 - 2009 TJ Holowaychuk <tj@vision-media.ca>
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
