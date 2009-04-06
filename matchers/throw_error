@@ -1,0 +1,7 @@
+function(){ foo() }.should.throw_error
+function(){ foo() }.should.throw_error 'oh noes!'
+
+// With alternative closure syntax 
+
+-{ foo() }.should.throw_error
+-{ foo() }.should.throw_error 'oh noes!'
