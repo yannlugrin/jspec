@@ -1,0 +1,2 @@
+'<p><em>Foo</em><em>Bar</em></p>'.should.have_many 'em'
+'<p><em>Foo</em></p>'.should.not.have_many 'em'

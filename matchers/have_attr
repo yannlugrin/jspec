@@ -1,0 +1,2 @@
+'<input type="text" />'.should.have_attr 'type'
+'<input type="text" />'.should.have_attr 'type', 'text'

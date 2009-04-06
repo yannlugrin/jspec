@@ -1,0 +1,1 @@
+'<p><em>Foo</em><em>Foo</em></p>'.should.have_children 'em'
