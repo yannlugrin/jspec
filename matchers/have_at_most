@@ -1,0 +1,1 @@
+person.should.have_at_most 3, 'pets'

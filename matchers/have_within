@@ -1,0 +1,1 @@
+person.should.have_within 0..2, 'pets'
