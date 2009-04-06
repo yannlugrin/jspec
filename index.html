@@ -27,101 +27,109 @@
       many helpful shorthand literals, a very intuitive / readable syntax, as well as not polluting core
       object prototypes.
     </p>
-    <h2>Features</h2>
-    <ul>
-      <li>Sexiest syntax of them all</li>
-      <li>Framework / DOM independent</li>
-      <li>Nested describes</li>
-      <li>Does not pollute core object prototypes</li>
-      <li>Async support</li>
-      <li>Extremely simple and intuitive matcher declaration</li>
-      <li>Over 45 core matchers</li>
-      <li>Allows parens to be optional when using matchers to increase readability</li>
-      <li>Several helpful formatters (dom, console, terminal, ...)</li>
-      <li>Assertion graphs displaying how many, and which assertions pass or failed</li>
-      <li>Default / customizable evaluation contexts</li>
-      <li>DOM sandbox support</li>
-      <li>Optionally display failures only, speeding up development</li>
-      <li>Great looking default DOM theme</li>
-      <li>Profiling</li>
-      <li>Tiny (15 kb compressed, 1000-ish LOC)</li>
-    </ul>
-    <h2>Example</h2>
-    <pre>describe 'ShoppingCart'&#x000A;  before_each&#x000A;    .cart = new ShoppingCart&#x000A;  end&#x000A;  &#x000A;  describe 'addProducts'&#x000A;    it 'should add several products'&#x000A;      .cart.addProduct('cookie')&#x000A;      .cart.addProduct('icecream')&#x000A;      .cart.should.have 2, 'products'&#x000A;    end&#x000A;  end&#x000A;&#x000A;  describe 'checkout'&#x000A;    it 'throw an error when checking out with no products'&#x000A;      .cart.clear()&#x000A;      -{ .cart.checkout() }.should.throw_error&#x000A;    end&#x000A;  end&#x000A;end</pre>
-    <h2>DOM Formatter</h2>
-    <p>The DOM formatter is the default of JSpec, featuring assertion graphs and a sleek white style.</p>
-    <img alt='JSpec DOM Formatter' class='rounded' src='http://img396.imageshack.us/img396/8868/jspecdom.png' />
-    <h2>Matchers</h2>
-    <pre id='matcher-example'>Click a matcher below to view an example</pre>
-    <div class='left'>
-      <h3>Core</h3>
-      <ul class='matchers'>
-        <li>be</li>
-        <li>eql</li>
-        <li>equal</li>
-        <li>be_a</li>
-        <li>be_an</li>
-        <li>be_at_least</li>
-        <li>be_at_most</li>
-        <li>be_null</li>
-        <li>be_empty</li>
-        <li>be_true</li>
-        <li>be_false</li>
-        <li>be_type</li>
-        <li>be_greater_than</li>
-        <li>be_less_than</li>
-        <li>have</li>
-        <li>have_at_least</li>
-        <li>have_at_most</li>
-        <li>have_within</li>
-        <li>be_within</li>
-        <li>have_length</li>
-        <li>include</li>
-        <li>match</li>
-        <li>respond_to</li>
+    <div id='features'>
+      <h2>Features</h2>
+      <ul>
+        <li>Sexiest syntax of them all</li>
+        <li>Framework / DOM independent</li>
+        <li>Nested describes</li>
+        <li>Does not pollute core object prototypes</li>
+        <li>Async support</li>
+        <li>Extremely simple and intuitive matcher declaration</li>
+        <li>Over 45 core matchers</li>
+        <li>Allows parens to be optional when using matchers to increase readability</li>
+        <li>Several helpful formatters (dom, console, terminal, ...)</li>
+        <li>Assertion graphs displaying how many, and which assertions pass or failed</li>
+        <li>Default / customizable evaluation contexts</li>
+        <li>DOM sandbox support</li>
+        <li>Optionally display failures only, speeding up development</li>
+        <li>Great looking default DOM theme</li>
+        <li>Profiling</li>
+        <li>Tiny (15 kb compressed, 1000-ish LOC)</li>
       </ul>
     </div>
-    <div class='right'>
-      <h3>jQuery</h3>
-      <ul class='matchers'>
-        <li>have_tag</li>
-        <li>have_one</li>
-        <li>have_tags</li>
-        <li>have_many</li>
-        <li>have_child</li>
-        <li>have_children</li>
-        <li>have_text</li>
-        <li>have_attr</li>
-        <li>have_value</li>
-        <li>have_class</li>
-        <li>be_visible</li>
-        <li>be_hidden</li>
-        <li>be_enabled</li>
-        <li>be_disabled</li>
-        <li>be_a_submit_input</li>
-        <li>be_a_text_input</li>
-        <li>be_a_image_input</li>
-        <li>be_a_submit_input</li>
-        <li>be_a_reset_input</li>
-        <li>be_a_password_input</li>
-        <li>be_a_file_input</li>
-        <li>be_a_radio_input</li>
-        <li>be_a_checkbox_input</li>
+    <div id='example'>
+      <h2>Example</h2>
+      <pre>describe 'ShoppingCart'&#x000A;  before_each&#x000A;    .cart = new ShoppingCart&#x000A;  end&#x000A;  &#x000A;  describe 'addProducts'&#x000A;    it 'should add several products'&#x000A;      .cart.addProduct('cookie')&#x000A;      .cart.addProduct('icecream')&#x000A;      .cart.should.have 2, 'products'&#x000A;    end&#x000A;  end&#x000A;&#x000A;  describe 'checkout'&#x000A;    it 'throw an error when checking out with no products'&#x000A;      .cart.clear()&#x000A;      -{ .cart.checkout() }.should.throw_error&#x000A;    end&#x000A;  end&#x000A;end</pre>
+      <h2>DOM Formatter</h2>
+      <p>The DOM formatter is the default of JSpec, featuring assertion graphs and a sleek white style.</p>
+      <img alt='JSpec DOM Formatter' class='rounded' src='http://img396.imageshack.us/img396/8868/jspecdom.png' />
+    </div>
+    <div id='matchers'>
+      <h2>Matchers</h2>
+      <pre id='matcher-example'>Click a matcher below to view an example</pre>
+      <div class='left'>
+        <h3>Core</h3>
+        <ul class='matchers'>
+          <li>be</li>
+          <li>eql</li>
+          <li>equal</li>
+          <li>be_a</li>
+          <li>be_an</li>
+          <li>be_at_least</li>
+          <li>be_at_most</li>
+          <li>be_null</li>
+          <li>be_empty</li>
+          <li>be_true</li>
+          <li>be_false</li>
+          <li>be_type</li>
+          <li>be_greater_than</li>
+          <li>be_less_than</li>
+          <li>have</li>
+          <li>have_at_least</li>
+          <li>have_at_most</li>
+          <li>have_within</li>
+          <li>be_within</li>
+          <li>have_length</li>
+          <li>include</li>
+          <li>match</li>
+          <li>respond_to</li>
+        </ul>
+      </div>
+      <div class='right'>
+        <h3>jQuery</h3>
+        <ul class='matchers'>
+          <li>have_tag</li>
+          <li>have_one</li>
+          <li>have_tags</li>
+          <li>have_many</li>
+          <li>have_child</li>
+          <li>have_children</li>
+          <li>have_text</li>
+          <li>have_attr</li>
+          <li>have_value</li>
+          <li>have_class</li>
+          <li>be_visible</li>
+          <li>be_hidden</li>
+          <li>be_enabled</li>
+          <li>be_disabled</li>
+          <li>be_a_submit_input</li>
+          <li>be_a_text_input</li>
+          <li>be_a_image_input</li>
+          <li>be_a_submit_input</li>
+          <li>be_a_reset_input</li>
+          <li>be_a_password_input</li>
+          <li>be_a_file_input</li>
+          <li>be_a_radio_input</li>
+          <li>be_a_checkbox_input</li>
+        </ul>
+      </div>
+      <div class='clear'></div>
+    </div>
+    <div id='more-information'>
+      <h2>More Information</h2>
+      <ul>
+        <li>
+          Get the
+          <a href='http://github.com/visionmedia/jspec.tmbundle/tree/master'>TextMate bundle</a>
+        </li>
+        <li>
+          View the
+          <a href='http://github.com/visionmedia/jspec'>Readme</a>
+          for more documentation
+        </li>
       </ul>
     </div>
-    <div class='clear'></div>
-    <h2>Misc</h2>
-    <ul>
-      <li>
-        Get the
-        <a href='http://github.com/visionmedia/jspec.tmbundle/tree/master'>TextMate bundle</a>
-      </li>
-      <li>
-        View the
-        <a href='http://github.com/visionmedia/jspec'>Readme</a>
-        for more documentation
-      </li>
-    </ul>
     <h2>Authors</h2>
     <p>
       TJ Holowaychuk
