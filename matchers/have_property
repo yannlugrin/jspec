@@ -1,0 +1,2 @@
+'foo'.should.have_property 'length'
+'foo'.should.have_property 'length', 3
