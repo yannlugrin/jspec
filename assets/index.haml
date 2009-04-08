@@ -3,6 +3,7 @@
   %head
     %title JSpec - JavaScript Testing Framework
     %link{ :rel => 'stylesheet', :href => 'style.css' }
+    %link{ :rel => 'stylesheet', :href => 'lightr.css' }
     %script{ :src => 'javascripts/jquery.js' }
     %script{ :src => 'javascripts/app.js' }
   %body
@@ -48,7 +49,7 @@
     %div#example
       %h2 Example
       
-      %pre= example 'basic'
+      %code.highlight= highlight example('basic')
       
       %h2 DOM Formatter
       %p The DOM formatter is the default of JSpec, featuring assertion graphs and a sleek white style.

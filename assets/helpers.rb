@@ -1,4 +1,11 @@
 
+require 'rubygems'
+require 'lightr'
+
+def highlight string
+  Lightr::JavaScript.parse(string).to_s
+end
+
 def example file
   File.read File.dirname(__FILE__) + '/examples/' + file
 end
