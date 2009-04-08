@@ -13,8 +13,7 @@ describe 'ShoppingCart'
 
   describe 'checkout'
     it 'throw an error when checking out with no products'
-      .cart.clear()
-      -{ .cart.checkout() }.should.throw_error
+      -{ .cart.clear().checkout() }.should.throw_error
     end
   end
 end

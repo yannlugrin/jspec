@@ -53,25 +53,24 @@
       <h2>Example</h2>
       <code class='highlight'>
         describe <span class="string">'ShoppingCart'</span>
-          before_each
-            .cart =<span class="keyword">new</span><span class="constant">ShoppingCart</span>
-          end
-          
-          describe <span class="string">'addProducts'</span>
-            it <span class="string">'should add several products'</span>
-              .cart.add<span class="constant">Product</span>(<span class="string">'cookie'</span>)
-              .cart.add<span class="constant">Product</span>(<span class="string">'icecream'</span>)
+         <span class="keyword"> before_each
+        </span>    .cart =<span class="keyword"> new </span><span class="constant">ShoppingCart</span>
+         <span class="keyword"> end
+        </span>  
+         <span class="keyword"> describe </span><span class="string">'addProducts'</span>
+           <span class="keyword"> it </span><span class="string">'should add several products'</span>
+              .cart.addProduct(<span class="string">'cookie'</span>)
+              .cart.addProduct(<span class="string">'icecream'</span>)
               .cart.should.have <span class="number int">2</span>, <span class="string">'products'</span>
-            end
-          end
-        
-          describe <span class="string">'checkout'</span>
-            it <span class="string">'throw an error when checking out with no products'</span>
-              .cart.clear()
-              -{ .cart.checkout() }.should.throw_error
-            end
-          end
-        end
+           <span class="keyword"> end
+        </span> <span class="keyword"> end
+        </span>
+         <span class="keyword"> describe </span><span class="string">'checkout'</span>
+           <span class="keyword"> it </span><span class="string">'throw an error when checking out with no products'</span>
+              -{ .cart.clear().checkout() }.should.throw_error
+           <span class="keyword"> end
+        </span> <span class="keyword"> end
+        </span>end
       </code>
       <h2>DOM Formatter</h2>
       <p>The DOM formatter is the default of JSpec, featuring assertion graphs and a sleek white style.</p>
