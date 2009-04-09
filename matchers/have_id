@@ -1,0 +1,2 @@
+'<input id="email" />'.should.have_id
+'<input id="email" />'.should.have_id 'email'

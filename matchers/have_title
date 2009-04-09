@@ -1,0 +1,2 @@
+'<a title="Email address" />'.should.have_title
+'<a title="Email address" />'.should.have_title 'Email address'

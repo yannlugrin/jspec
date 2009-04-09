@@ -1,0 +1,2 @@
+'<img src="some_path" />'.should.have_src 
+'<img src="some_path" />'.should.have_src 'some_path'

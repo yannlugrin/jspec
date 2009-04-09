@@ -1,0 +1,2 @@
+'<a target="foo" />'.should.have_target
+'<a target="foo" />'.should.have_target 'foo'

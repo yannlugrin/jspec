@@ -1,0 +1,2 @@
+'<a href="http://vision-media.ca" />'.should.have_href
+'<a href="http://vision-media.ca" />'.should.have_href 'http://vision-media.ca'

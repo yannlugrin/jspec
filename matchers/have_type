@@ -1,0 +1,2 @@
+'<input type="submit" />'.should.have_type
+'<input type="submit" />'.should.have_type 'submit'
