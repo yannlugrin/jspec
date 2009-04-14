@@ -45,6 +45,7 @@
         <li>DOM sandbox support</li>
         <li>Optionally display failures only, speeding up development</li>
         <li>Great looking default DOM theme</li>
+        <li>`jspec` command-line utility for auto-running specs, and initializing project templates</li>
         <li>Profiling</li>
         <li>Tiny (15 kb compressed, 1000-ish LOC)</li>
       </ul>
@@ -145,6 +146,11 @@
       </div>
       <div class='clear'></div>
     </div>
+    <h2>JSpec Executable</h2>
+    <p>The packaged JSpec executable allows you to quickly initialize project templates which utilize JSpec, update them with the lateast versions of JSpec, as well as auto-run suites in multiple browsers when a file is altered. For information beyond the examples below consult `jspec help`.</p>
+    <pre># Initialize template in the current directory &#x000A;$ jspec init</pre>
+    <pre># Update to the lateast version of JSpec within your spec suite&#x000A;$ jspec update&#x000A;&#x000A;# Update a specific file&#x000A;$ jspec update spec/run-suites.html</pre>
+    <pre># Refresh suites when any JavaScript is altered&#x000A;$ jspec&#x000A;&#x000A;# Run suites once&#x000A;$ jspec run&#x000A;&#x000A;# Refresh suites when altered in a custom suite path, and several browsers&#x000A;$ jspec spec/run-suites.html --browsers Safari,Firefox</pre>
     <div id='more-information'>
       <h2>More Information</h2>
       <ul>

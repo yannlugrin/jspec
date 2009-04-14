@@ -43,6 +43,7 @@
         %li DOM sandbox support
         %li Optionally display failures only, speeding up development
         %li Great looking default DOM theme
+        %li `jspec` command-line utility for auto-running specs, and initializing project templates
         %li Profiling
         %li Tiny (15 kb compressed, 1000-ish LOC)
 
@@ -121,6 +122,13 @@
           %li have_target
       
       %div.clear
+
+    %h2 JSpec Executable
+    %p The packaged JSpec executable allows you to quickly initialize project templates which utilize JSpec, update them with the lateast versions of JSpec, as well as auto-run suites in multiple browsers when a file is altered. For information beyond the examples below consult `jspec help`.
+
+    %pre= example('jspec-init')
+    %pre= example('jspec-update')
+    %pre= example('jspec-bind')
 
     %div#more-information
       %h2 More Information

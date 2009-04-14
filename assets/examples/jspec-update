@@ -1,0 +1,5 @@
+# Update to the lateast version of JSpec within your spec suite
+$ jspec update
+
+# Update a specific file
+$ jspec update spec/run-suites.html

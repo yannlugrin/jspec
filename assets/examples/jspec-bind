@@ -1,0 +1,8 @@
+# Refresh suites when any JavaScript is altered
+$ jspec
+
+# Run suites once
+$ jspec run
+
+# Refresh suites when altered in a custom suite path, and several browsers
+$ jspec spec/run-suites.html --browsers Safari,Firefox
