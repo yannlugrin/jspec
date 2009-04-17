@@ -25,13 +25,21 @@
       many helpful shorthand literals, a very intuitive / readable syntax, as well as not polluting core
       object prototypes.
 
+    %p
+      JSpec can also be run in a variety of ways, such as via the terminal with Rhino support, via browsers
+      using the DOM or Console formatters, or finally by using the Ruby JavaScript testing framework which
+      runs browsers in the background, reporting back to the terminal.
+
     %div#features
       %h2 Features
       
       %ul
-        %li Sexiest syntax of them all
+        %li Highly readable custom grammar
         %li Framework / DOM independent
         %li Nested describes
+        %li Cascading before/after/before_each/after_each hooks
+        %li Rhino support
+        %li Ruby JavaScript testing server
         %li Does not pollute core object prototypes
         %li Async support
         %li Extremely simple and intuitive matcher declaration
