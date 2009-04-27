@@ -25,39 +25,10 @@ and much more.
 * DOM sandbox support
 * Great looking default DOM theme
 * `jspec` command-line utility for auto-running specs, and initializing project templates
+* Proxy or 'Spy' assertions 
+* Shared behaviors
 * Profiling
-* Tiny (15 kb compressed, 1000-ish LOC)
-
-== Features Coming Soon
-
-* 'Spy' or 'Proxy' assertions. person.should.receive('addPet').with('suki').and_return(['suki'])
-* Grammar-less option. Dislike JSpec's grammar? well we will soon have grammar-less support,
-  which in turn will make your specs look much like traditional JavaScript BDD frameworks:
-  expect(this).to('be_coming', 'soon')  
-
-== Example
-
-  describe 'ShoppingCart'
-    var cart
-  
-    before_each
-      cart = new ShoppingCart
-    end
-    
-    describe 'addProducts'
-      it 'should add several products'
-        cart.addProduct('cookie')
-        cart.addProduct('icecream')
-        cart.should.have 2, 'products'
-      end
-    end
-  
-    describe 'checkout'
-      it 'throw an error when checking out with no products'
-        -{ cart.clear().checkout() }.should.throw_error
-      end
-    end
-  end
+* Tiny (15 kb compressed, 1600-ish LOC)
 
 == Installation
 
@@ -90,6 +61,54 @@ loaded using the exec method. Below is an example:
 You may optionally want to use sources in the /pkg directory
 for your project, since it includes compressed alternatives generated
 each release.
+
+== Example
+
+  describe 'ShoppingCart'
+    before_each
+      cart = new ShoppingCart
+    end
+    
+    describe 'addProducts'
+      it 'should add several products'
+        cart.addProduct('cookie')
+        cart.addProduct('icecream')
+        cart.should.have 2, 'products'
+      end
+    end
+  
+    describe 'checkout'
+      it 'should throw an error when checking out with no products'
+        -{ cart.clear().checkout() }.should.throw_error EmptyCart
+      end
+    end
+  end
+
+== Grammar-less Example
+
+JSpec's grammar is optional, you may also use the equivalent grammar-less
+alternative below using pure JavaScript (when using the JSpec grammar you
+may also use grammar-less assertions):
+
+  JSpec.describe('ShoppingCart', function(){
+    before_each(function{
+      cart = new ShoppingCart
+    })
+
+    describe('addProducts', function(){
+      it ('should add several products', function(){
+        cart.addProducts('cookie')
+        cart.addProducts('icecream')
+        expect(cart).to(have, 2, 'products')
+      })
+    })
+
+    describe('checkout', function(){
+      it ('should throw an error when checking out with no products', function(){
+        expect(function(){ cart.clear().checkout() }).to(throw_error, EmptyCart)
+      })
+    })
+  }) 
 
 == Options
 
@@ -153,6 +172,7 @@ JSpec.options.failuresOnly = true, and ?failuresOnly=1 will both work.
   - have_target
   - have_value     
   - have_class
+  - have_classes
   - be_visible
   - be_hidden
   - be_enabled
@@ -160,17 +180,82 @@ JSpec.options.failuresOnly = true, and ?failuresOnly=1 will both work.
   - be_selected
   - be_checked
 
+== Proxy Assertions
+
+Proxy or 'Spy' assertions allow you to assert that a method is called n number
+of times, with x arguments, returning x value. For example:
+
+  person = { getPets : function(species){ return ['izzy'] }}
+  person.should.receive('getPets', 'twice').with_args(an_instance_of(String))and_return(['izzy'])
+  person.getPets('dog') // This will pass
+  person.getPets()      // This will fail because we asked an instance of String
+
+This is a useful mechanism for testing the behavior of your object, as well as
+how other methods may interact with it. Below is another example:
+
+  array = ['foo', 'bar']
+  array.should.receive('toString').and_return('foo,bar')
+  'array: ' + array // This line causes the spec to pass due to calling toString()
+
+For more examples view spec/spec.matchers.js
+
 == Helpers
 
   * Core
 
-  - sandbox     used to generate new DOM sandbox
+  - wait             delay execution of a spec for the duration set (async support)
+  - an_instance_of   used in conjunction with the 'receive' matcher
                 
   * jQuery      
                 
   - sandbox     used to generate new DOM sandbox, using jQuery object
   - element     same as invoking jQuery, just reads better and no need to worry about $ collisions
   - elements    alias of element
+
+== Shared Behaviors
+
+JSpec's support for shared behaviors allows multiple suites or describe blocks to share
+common functionality. For example an Admin, would inherit all specs of User:
+
+  describe 'User'
+    before
+      User = function(name) { this.name = name }
+      user = new User('joe')
+    end
+    
+    it 'should have a name'
+      user.should.have_property 'name'
+    end
+    
+    describe 'Administrator'
+      should_behave_like('User')
+  
+      before
+        Admin = function(name) { this.name = name }
+        Admin.prototype.may = function(perm){ return true }
+        user = new Admin('tj')
+      end
+  
+      it 'should have access to all permissions'
+        user.may('edit pages').should.be_true
+      end
+    end
+  end
+
+NOTE: both User and Administrator's before hooks implement the 'user' variable
+
+== Async Support Using wait()
+
+When using jQuery with JSpec all requests are switched to sync, allowing specs
+to run naturally, however when testing functionality using setTimeout, setInterval etc
+JSpec supplies the wait() utility to delay a spec from running:
+
+  it 'should wait for n milliseconds'
+    wait(2, 'seconds')
+    setTimeout(function(){
+      true.should.be true
+    }, 1500)
+  end
 
 == Hooks
 
@@ -188,10 +273,9 @@ scope, they will both run, but this can help keep your specs readable.
 Custom contexts can be applied to supply helper
 methods or properties to all subsequent bodies (other hooks, or specs).
 
-In most cases the default context will suffice, in combination with the
-'this' keyword. Keep in mind that when replacing the default context
-you will loose functionality provided by it, unless you manually merge it
-into your custom context.
+Keep in mind that when replacing the default context you will loose 
+functionality provided by it, unless you manually merge it with your 
+custom context.
 
 To reset the context simply assign null to obtain the original context.
 
@@ -205,7 +289,7 @@ To reset the context simply assign null to obtain the original context.
   end
 
   it 'will work ;)'
-    this.foo.should_equal 'bar'
+    foo.should_equal 'bar'
   end
   ...
 
@@ -257,50 +341,6 @@ These are equivalent:
 The following expands to the array of [1,2,3,4,5]
 
   n.should.be_within 1..5
-
-=== This Literal
-
-Commonly throughout using JSpec you will often need to do things like the following,
-while referencing 'this.cart' throughout your specs:
-
-  before
-    this.cart = new ShoppingCart
-  end
-
-Thanks to the pre-processor we can simply use the terse alternative below:
-
-  ...
-  before
-    .cart = new ShoppingCart
-  end
-
-  it '...'
-    .cart.should.have 4, 'products'
-  end
-  ...
-
-Alternatively you may utilize literal javascript outside of the closures:
-
-  ...
-  cart = new ShoppingCart
-
-  it '...'
-    cart.should.have 4, 'products'
-  end
-  ...
-
-Another option is to declare a variable outside of the spec closures:
-
-  var cart
-
-  before
-    cart = new ShoppingCart
-  end
-
-  it '...'
-    cart.should.have 4, 'products'
-  end
-  ...
 
 == Formatters
 
@@ -424,10 +464,6 @@ Run with:
 * Syntax comparison with other frameworks http://gist.github.com/92283
 * Get the TextMate bundle at https://github.com/visionmedia/jspec.tmbundle/tree
 * For more information consult the JSpec source code documentation or visit http://visionmedia.github.com/jspec
-
-== Known Issues
-
-* Opera likes to break for various reasons ... we are working on fixing these compat issues
 
 == License 
 
