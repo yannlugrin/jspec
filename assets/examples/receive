@@ -1,0 +1,2 @@
+person.should.receive('getPets', 'once').with_args('dogs').and_return(an_instance_of(Array))
+dogs = person.getDogs()

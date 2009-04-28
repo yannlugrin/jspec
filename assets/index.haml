@@ -144,6 +144,15 @@
     %pre= example('jspec-update')
     %pre= example('jspec-bind')
 
+    %h2 Proxy Assertions or 'Spies'
+    %p JSpec's support for proxy assertions allows you to assert that a method is invoked a specific number of times, with specific arguments, returning specific results. In the example below, we assert that <strong>getDogs()</strong> calls <strong>getPets()</strong> with a string of <strong>'dogs'</strong>, and returns an array of dogs. All these assertions must pass in order for the spec to pass.
+
+    %pre.small= example('receive')
+
+    %p The example below will fail, due to the method being called only once with a string.
+
+    %pre.small= example('receive-fail')
+
     %div#more-information
       %h2 More Information
       

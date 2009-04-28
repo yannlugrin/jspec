@@ -1,0 +1,3 @@
+person.should.receive('getPets', 'twice').with_args(an_instance_of(String))
+dogs = person.getPets('dogs') // Passes
+all  = person.getPets() // Fails

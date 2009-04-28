@@ -1,15 +1,20 @@
 describe 'ShoppingCart'
-  var cart
-
   before_each
     cart = new ShoppingCart
   end
   
-  describe 'addProducts'
-    it 'should add several products'
+  describe 'addProduct'
+    it 'should add a product'
       cart.addProduct('cookie')
       cart.addProduct('icecream')
       cart.should.have 2, 'products'
+    end
+  end
+
+  describe 'addProducts'
+    it 'should add several products'
+      cart.should.receive('addProduct', 'twice').with_args(an_instance_of(String))
+      cart.addProducts('cookie', 'icecream')
     end
   end
 
