@@ -2,7 +2,7 @@
 $ jspec init
 
 # Initialize using Rhino template at ./myproject
-$ jspec init myproject --rhino
+$ jspec init myproject --template rhino
 
 # Initialize using the JSpec server
-$ jspec init --server
+$ jspec init --template server
