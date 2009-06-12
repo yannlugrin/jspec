@@ -1,8 +1,5 @@
 # Initialize template in the current directory 
 $ jspec init
 
-# Initialize using Rhino template at ./myproject
-$ jspec init myproject --template rhino
-
-# Initialize using the JSpec server
-$ jspec init --template server
+# Initialize template at ./myproject
+$ jspec init myproject 

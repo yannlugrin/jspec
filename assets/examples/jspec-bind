@@ -4,5 +4,8 @@ $ jspec
 # Run suites once
 $ jspec run
 
-# Refresh suites when altered in a custom suite path, and several browsers
+# Refresh suites when altered in a custom suite path, in several browsers
 $ jspec spec/run-suites.html --browsers Safari,Firefox
+
+# Run Rack server in several browsers
+$ jspec --server --browsers Safari,Opera,Firefox
