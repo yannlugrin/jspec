@@ -5,3 +5,5 @@ function(){ foo() }.should.throw_error 'oh noes!'
 
 -{ foo() }.should.throw_error
 -{ foo() }.should.throw_error 'oh noes!'
+-{ throw new TypeError('foo bar') }.should.throw_error TypeError, 'foo bar'
+-{ throw new TypeError('foo bar') }.should.throw_error TypeError, /bar/
