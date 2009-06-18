@@ -86,7 +86,7 @@
         </span>
          <span class="keyword"> describe </span><span class="string">'checkout'</span>
            <span class="keyword"> it </span><span class="string">'throw an error when checking out with no products'</span>
-              -{ cart.clear().checkout() }.should.throw_error
+              -{ cart.clear().checkout() }.should.throw_error <span class="constant">CheckoutError</span>, <span class="string">'No products'</span>
            <span class="keyword"> end
         </span> <span class="keyword"> end
         </span>end
