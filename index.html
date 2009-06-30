@@ -39,6 +39,7 @@
         <li>Allows parens to be optional when using matchers to increase readability</li>
         <li>Assertion graphs displaying how many, and which assertions passed or failed</li>
         <li>Async support</li>
+        <li>Modular extensibility via Modules and hooks.</li>
         <li>Cascading before/after/before_each/after_each hooks</li>
         <li>Default / customizable evaluation contexts</li>
         <li>Does not pollute core object prototypes or global scope</li>
@@ -167,14 +168,25 @@
     </div>
     <h2>JSpec Executable</h2>
     <p>The packaged JSpec executable allows you to quickly initialize project templates which utilize JSpec, update them with the lateast versions of JSpec, as well as auto-run suites in multiple browsers when a file is altered. For information beyond the examples below consult `jspec help`.</p>
-    <pre># Initialize template in the current directory &#x000A;$ jspec init&#x000A;&#x000A;# Initialize template at ./myproject&#x000A;$ jspec init myproject</pre>
-    <pre># Update to the lateast version of JSpec within your spec suite&#x000A;$ jspec update&#x000A;&#x000A;# Update a specific file&#x000A;$ jspec update spec/run-suites.html</pre>
-    <pre># Refresh suites when any JavaScript is altered&#x000A;$ jspec&#x000A;&#x000A;# Run suites once&#x000A;$ jspec run&#x000A;&#x000A;# Refresh suites when altered in a custom suite path, in several browsers&#x000A;$ jspec spec/run-suites.html --browsers Safari,Firefox&#x000A;&#x000A;# Run Rack server in several browsers&#x000A;$ jspec --server --browsers Safari,Opera,Firefox</pre>
+    <pre class='small'># Initialize template in the current directory &#x000A;$ jspec init&#x000A;&#x000A;# Initialize template at ./myproject&#x000A;$ jspec init myproject</pre>
+    <pre class='small'># Update to the lateast version of JSpec within your spec suite&#x000A;$ jspec update&#x000A;&#x000A;# Update a specific file&#x000A;$ jspec update spec/run-suites.html</pre>
+    <pre class='small'># Refresh suites when any JavaScript is altered&#x000A;$ jspec&#x000A;&#x000A;# Run suites once&#x000A;$ jspec run&#x000A;&#x000A;# Refresh suites when altered in a custom suite path, in several browsers&#x000A;$ jspec spec/run-suites.html --browsers Safari,Firefox&#x000A;&#x000A;# Run Rack server in several browsers&#x000A;$ jspec --server --browsers Safari,Opera,Firefox</pre>
     <h2>Proxy Assertions or 'Spies'</h2>
     <p>JSpec's support for proxy assertions allows you to assert that a method is invoked a specific number of times, with specific arguments, returning specific results. In the example below, we assert that <strong>getDogs()</strong> calls <strong>getPets()</strong> with a string of <strong>'dogs'</strong>, and returns an array of dogs. All these assertions must pass in order for the spec to pass.</p>
     <pre class='small'>person.should.receive('getPets', 'once').with_args('dogs').and_return(an_instance_of(Array))&#x000A;dogs = person.getDogs()</pre>
     <p>The example below will fail, due to the method being called only once with a string.</p>
     <pre class='small'>person.should.receive('getPets', 'twice').with_args(an_instance_of(String))&#x000A;dogs = person.getPets('dogs') // Passes&#x000A;all  = person.getPets() // Fails</pre>
+    <h2>Extending JSpec With Modules</h2>
+    <p>JSpec's Modules take the form of a simple JavaScript object or 'hash', allowing you to add matchers</p>
+    define dependencies, add utility functions, implement hook callbacks and more. Below is an example module
+    taken from core to add jQuery support. Consult the README for additional information.
+    <pre class='small'>// JSpec - jQuery - Copyright TJ Holowaychuk <tj@vision-media.ca> (MIT Licensed)&#x000A;&#x000A;JSpec.include({&#x000A;  &#x000A;  // --- Initialize&#x000A;  &#x000A;  init : function() {&#x000A;    this.requires('jQuery', 'when using jspec.jquery.js')&#x000A;    jQuery.ajaxSetup({ async : false })&#x000A;  },&#x000A;  &#x000A;  // --- Utilities&#x000A;  &#x000A;  utilities : {&#x000A;    element : jQuery,&#x000A;    elements : jQuery,&#x000A;    sandbox : function() {&#x000A;      return jQuery('&lt;div class="sandbox"&gt;&lt;/div&gt;')&#x000A;    }&#x000A;  },&#x000A;  &#x000A;  // --- Matchers&#x000A;  &#x000A;  matchers : {&#x000A;    have_tag      : "jQuery(expected, actual).length == 1",&#x000A;    have_one      : "alias have_tag",&#x000A;    have_tags     : "jQuery(expected, actual).length > 1",&#x000A;    have_many     : "alias have_tags",&#x000A;    have_child    : "jQuery(actual).children(expected).length == 1",&#x000A;    have_children : "jQuery(actual).children(expected).length > 1",&#x000A;    have_text     : "jQuery(actual).text() == expected",&#x000A;    have_value    : "jQuery(actual).val() == expected",&#x000A;    be_visible    : "!jQuery(actual).is(':hidden')",&#x000A;    be_hidden     : "jQuery(actual).is(':hidden')",&#x000A;    be_enabled    : "!jQuery(actual).attr('disabled')",&#x000A;    have_class    : "jQuery(actual).hasClass(expected)",&#x000A;&#x000A;    have_classes : function(actual) {&#x000A;      return !JSpec.any(JSpec.argumentsToArray(arguments, 1), function(arg){&#x000A;        return !JSpec.does(actual, 'have_class', arg)&#x000A;      })&#x000A;    },&#x000A;&#x000A;    have_attr : function(actual, attr, value) {&#x000A;      return value ? jQuery(actual).attr(attr) == value:&#x000A;                     jQuery(actual).attr(attr)&#x000A;    },&#x000A;    &#x000A;    'be disabled selected checked' : function(attr) {&#x000A;      return 'jQuery(actual).attr("' + attr + '")'&#x000A;    },&#x000A;    &#x000A;    'have type id title alt href src sel rev name target' : function(attr) {&#x000A;      return function(actual, value) {&#x000A;        return JSpec.does(actual, 'have_attr', attr, value)&#x000A;      }&#x000A;    }&#x000A;  }&#x000A;})</pre>
+    <h2>Module Hooks</h2>
+    <p>Hooks are called throughout JSpec's execution to provide modles with a chance to alter, or act upon</p>
+    what is currently being processed. For example to add range support to JSpec we can simply implement a
+    hook callback for the 'preprocessing' hook:
+    <p>This implementation would allow '0..5' to be expanded to '[0,1,2,3,4,5]'</p>
+    <pre class='small'>JSpec.include({&#x000A;  preprocessing : function(input) {&#x000A;    return input.replace(/(\d+)\.\.(\d+)/g, function(_, start, end){&#x000A;      var current = parseInt(start), end = parseInt(end), values = [current]&#x000A;      if (end > current) while (++current <= end) values.push(current)&#x000A;      else               while (--current >= end) values.push(current)&#x000A;      return '[' + values + ']'&#x000A;    })&#x000A;  }&#x000A;})</pre>
     <div id='more-information'>
       <h2>More Information</h2>
       <ul>

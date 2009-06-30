@@ -1,0 +1,10 @@
+JSpec.include({
+  preprocessing : function(input) {
+    return input.replace(/(\d+)\.\.(\d+)/g, function(_, start, end){
+      var current = parseInt(start), end = parseInt(end), values = [current]
+      if (end > current) while (++current <= end) values.push(current)
+      else               while (--current >= end) values.push(current)
+      return '[' + values + ']'
+    })
+  }
+})

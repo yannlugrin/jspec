@@ -37,6 +37,7 @@
         %li Allows parens to be optional when using matchers to increase readability
         %li Assertion graphs displaying how many, and which assertions passed or failed
         %li Async support
+        %li Modular extensibility via Modules and hooks.
         %li Cascading before/after/before_each/after_each hooks
         %li Default / customizable evaluation contexts
         %li Does not pollute core object prototypes or global scope
@@ -141,9 +142,9 @@
     %h2 JSpec Executable
     %p The packaged JSpec executable allows you to quickly initialize project templates which utilize JSpec, update them with the lateast versions of JSpec, as well as auto-run suites in multiple browsers when a file is altered. For information beyond the examples below consult `jspec help`.
 
-    %pre= example('jspec-init')
-    %pre= example('jspec-update')
-    %pre= example('jspec-bind')
+    %pre.small= example('jspec-init')
+    %pre.small= example('jspec-update')
+    %pre.small= example('jspec-bind')
 
     %h2 Proxy Assertions or 'Spies'
     %p JSpec's support for proxy assertions allows you to assert that a method is invoked a specific number of times, with specific arguments, returning specific results. In the example below, we assert that <strong>getDogs()</strong> calls <strong>getPets()</strong> with a string of <strong>'dogs'</strong>, and returns an array of dogs. All these assertions must pass in order for the spec to pass.
@@ -153,6 +154,21 @@
     %p The example below will fail, due to the method being called only once with a string.
 
     %pre.small= example('receive-fail')
+    
+    %h2 Extending JSpec With Modules
+    %p JSpec's Modules take the form of a simple JavaScript object or 'hash', allowing you to add matchers
+    define dependencies, add utility functions, implement hook callbacks and more. Below is an example module
+    taken from core to add jQuery support. Consult the README for additional information.
+    
+    %pre.small= example('module-jquery')
+    
+    %h2 Module Hooks
+    %p Hooks are called throughout JSpec's execution to provide modles with a chance to alter, or act upon 
+    what is currently being processed. For example to add range support to JSpec we can simply implement a 
+    hook callback for the 'preprocessing' hook:
+    
+    %p This implementation would allow '0..5' to be expanded to '[0,1,2,3,4,5]'
+    %pre.small= example('module-hook-preprocessing')
 
     %div#more-information
       %h2 More Information
