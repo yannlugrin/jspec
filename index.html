@@ -68,29 +68,29 @@
     <div id='example'>
       <h2>Example</h2>
       <code class='highlight'>
-        describe <span class="string">'ShoppingCart'</span>
+        describe &#<span class="number int">39</span>;<span class="constant">ShoppingCart</span>&#<span class="number int">39</span>;
          <span class="keyword"> before_each
         </span>    cart =<span class="keyword"> new </span><span class="constant">ShoppingCart</span>
          <span class="keyword"> end
         </span>  
-         <span class="keyword"> describe </span><span class="string">'addProduct'</span>
-           <span class="keyword"> it </span><span class="string">'should add a product'</span>
-              cart.addProduct(<span class="string">'cookie'</span>)
-              cart.addProduct(<span class="string">'icecream'</span>)
-              cart.should.have <span class="number int">2</span>, <span class="string">'products'</span>
+         <span class="keyword"> describe </span>&#<span class="number int">39</span>;addProduct&#<span class="number int">39</span>;
+           <span class="keyword"> it </span>&#<span class="number int">39</span>;should add a product&#<span class="number int">39</span>;
+              cart.addProduct(&#<span class="number int">39</span>;cookie&#<span class="number int">39</span>;)
+              cart.addProduct(&#<span class="number int">39</span>;icecream&#<span class="number int">39</span>;)
+              cart.should.have <span class="number int">2</span>, &#<span class="number int">39</span>;products&#<span class="number int">39</span>;
            <span class="keyword"> end
         </span> <span class="keyword"> end
         </span>
-         <span class="keyword"> describe </span><span class="string">'addProducts'</span>
-           <span class="keyword"> it </span><span class="string">'should add several products'</span>
-              cart.should.receive(<span class="string">'addProduct'</span>, <span class="string">'twice'</span>).with_args(an_instance_of(<span class="constant">String</span>))
-              cart.addProducts(<span class="string">'cookie'</span>, <span class="string">'icecream'</span>)
+         <span class="keyword"> describe </span>&#<span class="number int">39</span>;addProducts&#<span class="number int">39</span>;
+           <span class="keyword"> it </span>&#<span class="number int">39</span>;should add several products&#<span class="number int">39</span>;
+              cart.should.receive(&#<span class="number int">39</span>;addProduct&#<span class="number int">39</span>;, &#<span class="number int">39</span>;twice&#<span class="number int">39</span>;).with_args(an_instance_of(<span class="constant">String</span>))
+              cart.addProducts(&#<span class="number int">39</span>;cookie&#<span class="number int">39</span>;, &#<span class="number int">39</span>;icecream&#<span class="number int">39</span>;)
            <span class="keyword"> end
         </span> <span class="keyword"> end
         </span>
-         <span class="keyword"> describe </span><span class="string">'checkout'</span>
-           <span class="keyword"> it </span><span class="string">'throw an error when checking out with no products'</span>
-              -{ cart.clear().checkout() }.should.throw_error <span class="constant">CheckoutError</span>, <span class="string">'No products'</span>
+         <span class="keyword"> describe </span>&#<span class="number int">39</span>;checkout&#<span class="number int">39</span>;
+           <span class="keyword"> it </span>&#<span class="number int">39</span><span class="keyword">;throw </span>an error when checking out<span class="keyword"> with </span>no products&#<span class="number int">39</span>;
+              -{ cart.clear().checkout() }.should.throw_error <span class="constant">CheckoutError</span>, &#<span class="number int">39</span>;<span class="constant">No</span> products&#<span class="number int">39</span>;
            <span class="keyword"> end
         </span> <span class="keyword"> end
         </span>end
@@ -176,20 +176,20 @@
     <pre class='small'># Refresh suites when any JavaScript is altered&#x000A;$ jspec&#x000A;&#x000A;# Run suites once&#x000A;$ jspec run&#x000A;&#x000A;# Refresh suites when altered in a custom suite path, in several browsers&#x000A;$ jspec spec/run-suites.html --browsers Safari,Firefox&#x000A;&#x000A;# Run Rack server in several browsers&#x000A;$ jspec --server --browsers Safari,Opera,Firefox</pre>
     <h2>Proxy Assertions or 'Spies'</h2>
     <p>JSpec's support for proxy assertions allows you to assert that a method is invoked a specific number of times, with specific arguments, returning specific results. In the example below, we assert that <strong>getDogs()</strong> calls <strong>getPets()</strong> with a string of <strong>'dogs'</strong>, and returns an array of dogs. All these assertions must pass in order for the spec to pass.</p>
-    <pre class='small'>person.should.receive('getPets', 'once').with_args('dogs').and_return(an_instance_of(Array))&#x000A;dogs = person.getDogs()</pre>
+    <pre class='small'>person.should.receive(&#39;getPets&#39;, &#39;once&#39;).with_args(&#39;dogs&#39;).and_return(an_instance_of(Array))&#x000A;dogs = person.getDogs()</pre>
     <p>The example below will fail, due to the method being called only once with a string.</p>
-    <pre class='small'>person.should.receive('getPets', 'twice').with_args(an_instance_of(String))&#x000A;dogs = person.getPets('dogs') // Passes&#x000A;all  = person.getPets() // Fails</pre>
+    <pre class='small'>person.should.receive(&#39;getPets&#39;, &#39;twice&#39;).with_args(an_instance_of(String))&#x000A;dogs = person.getPets(&#39;dogs&#39;) // Passes&#x000A;all  = person.getPets() // Fails</pre>
     <h2>Extending JSpec With Modules</h2>
     <p>JSpec's Modules take the form of a simple JavaScript object or 'hash', allowing you to add matchers</p>
     define dependencies, add utility functions, implement hook callbacks and more. Below is an example module
     taken from core to add jQuery support. Consult the README for additional information.
-    <pre class='small'>// JSpec - jQuery - Copyright TJ Holowaychuk <tj@vision-media.ca> (MIT Licensed)&#x000A;&#x000A;JSpec&#x000A;.requires('jQuery', 'when using jspec.jquery.js')&#x000A;.include({&#x000A;  &#x000A;  // --- Initialize&#x000A;  &#x000A;  init : function() {&#x000A;    jQuery.ajaxSetup({ async : false })&#x000A;  },&#x000A;  &#x000A;  // --- Utilities&#x000A;  &#x000A;  utilities : {&#x000A;    element : jQuery,&#x000A;    elements : jQuery,&#x000A;    sandbox : function() {&#x000A;      return jQuery('<div class="sandbox"></div>')&#x000A;    }&#x000A;  },&#x000A;  &#x000A;  // --- Matchers&#x000A;  &#x000A;  matchers : {&#x000A;    have_tag      : "jQuery(expected, actual).length == 1",&#x000A;    have_one      : "alias have_tag",&#x000A;    have_tags     : "jQuery(expected, actual).length > 1",&#x000A;    have_many     : "alias have_tags",&#x000A;    have_child    : "jQuery(actual).children(expected).length == 1",&#x000A;    have_children : "jQuery(actual).children(expected).length > 1",&#x000A;    have_text     : "jQuery(actual).text() == expected",&#x000A;    have_value    : "jQuery(actual).val() == expected",&#x000A;    be_enabled    : "!jQuery(actual).attr('disabled')",&#x000A;    have_class    : "jQuery(actual).hasClass(expected)",&#x000A;    &#x000A;    be_visible : function(actual) {&#x000A;      return jQuery(actual).css('display') != 'none' &&&#x000A;             jQuery(actual).css('visibility') != 'hidden' &&&#x000A;             jQuery(actual).attr('type') != 'hidden'&#x000A;    },&#x000A;    &#x000A;    be_hidden : function(actual) {&#x000A;      return !JSpec.does(actual, 'be_visible')&#x000A;    },&#x000A;&#x000A;    have_classes : function(actual) {&#x000A;      return !JSpec.any(JSpec.argumentsToArray(arguments, 1), function(arg){&#x000A;        return !JSpec.does(actual, 'have_class', arg)&#x000A;      })&#x000A;    },&#x000A;&#x000A;    have_attr : function(actual, attr, value) {&#x000A;      return value ? jQuery(actual).attr(attr) == value:&#x000A;                     jQuery(actual).attr(attr)&#x000A;    },&#x000A;    &#x000A;    'be disabled selected checked' : function(attr) {&#x000A;      return 'jQuery(actual).attr("' + attr + '")'&#x000A;    },&#x000A;    &#x000A;    'have type id title alt href src sel rev name target' : function(attr) {&#x000A;      return function(actual, value) {&#x000A;        return JSpec.does(actual, 'have_attr', attr, value)&#x000A;      }&#x000A;    }&#x000A;  }&#x000A;})</pre>
+    <pre class='small'>// JSpec - jQuery - Copyright TJ Holowaychuk &lt;tj@vision-media.ca&gt; (MIT Licensed)&#x000A;&#x000A;JSpec&#x000A;.requires(&#39;jQuery&#39;, &#39;when using jspec.jquery.js&#39;)&#x000A;.include({&#x000A;  &#x000A;  // --- Initialize&#x000A;  &#x000A;  init : function() {&#x000A;    jQuery.ajaxSetup({ async : false })&#x000A;  },&#x000A;  &#x000A;  // --- Utilities&#x000A;  &#x000A;  utilities : {&#x000A;    element : jQuery,&#x000A;    elements : jQuery,&#x000A;    sandbox : function() {&#x000A;      return jQuery(&#39;&lt;div class=&quot;sandbox&quot;&gt;&lt;/div&gt;&#39;)&#x000A;    }&#x000A;  },&#x000A;  &#x000A;  // --- Matchers&#x000A;  &#x000A;  matchers : {&#x000A;    have_tag      : &quot;jQuery(expected, actual).length == 1&quot;,&#x000A;    have_one      : &quot;alias have_tag&quot;,&#x000A;    have_tags     : &quot;jQuery(expected, actual).length &gt; 1&quot;,&#x000A;    have_many     : &quot;alias have_tags&quot;,&#x000A;    have_child    : &quot;jQuery(actual).children(expected).length == 1&quot;,&#x000A;    have_children : &quot;jQuery(actual).children(expected).length &gt; 1&quot;,&#x000A;    have_text     : &quot;jQuery(actual).text() == expected&quot;,&#x000A;    have_value    : &quot;jQuery(actual).val() == expected&quot;,&#x000A;    be_enabled    : &quot;!jQuery(actual).attr(&#39;disabled&#39;)&quot;,&#x000A;    have_class    : &quot;jQuery(actual).hasClass(expected)&quot;,&#x000A;    &#x000A;    be_visible : function(actual) {&#x000A;      return jQuery(actual).css(&#39;display&#39;) != &#39;none&#39; &amp;&amp;&#x000A;             jQuery(actual).css(&#39;visibility&#39;) != &#39;hidden&#39; &amp;&amp;&#x000A;             jQuery(actual).attr(&#39;type&#39;) != &#39;hidden&#39;&#x000A;    },&#x000A;    &#x000A;    be_hidden : function(actual) {&#x000A;      return !JSpec.does(actual, &#39;be_visible&#39;)&#x000A;    },&#x000A;&#x000A;    have_classes : function(actual) {&#x000A;      return !JSpec.any(JSpec.argumentsToArray(arguments, 1), function(arg){&#x000A;        return !JSpec.does(actual, &#39;have_class&#39;, arg)&#x000A;      })&#x000A;    },&#x000A;&#x000A;    have_attr : function(actual, attr, value) {&#x000A;      return value ? jQuery(actual).attr(attr) == value:&#x000A;                     jQuery(actual).attr(attr)&#x000A;    },&#x000A;    &#x000A;    &#39;be disabled selected checked&#39; : function(attr) {&#x000A;      return &#39;jQuery(actual).attr(&quot;&#39; + attr + &#39;&quot;)&#39;&#x000A;    },&#x000A;    &#x000A;    &#39;have type id title alt href src sel rev name target&#39; : function(attr) {&#x000A;      return function(actual, value) {&#x000A;        return JSpec.does(actual, &#39;have_attr&#39;, attr, value)&#x000A;      }&#x000A;    }&#x000A;  }&#x000A;})</pre>
     <h2>Module Hooks</h2>
     <p>Hooks are called throughout JSpec's execution to provide modles with a chance to alter, or act upon</p>
     what is currently being processed. For example to add range support to JSpec we can simply implement a
     hook callback for the 'preprocessing' hook:
     <p>This implementation would allow '0..5' to be expanded to '[0,1,2,3,4,5]'</p>
-    <pre class='small'>JSpec.include({&#x000A;  preprocessing : function(input) {&#x000A;    return input.replace(/(\d+)\.\.(\d+)/g, function(_, start, end){&#x000A;      var current = parseInt(start), end = parseInt(end), values = [current]&#x000A;      if (end > current) while (++current <= end) values.push(current)&#x000A;      else               while (--current >= end) values.push(current)&#x000A;      return '[' + values + ']'&#x000A;    })&#x000A;  }&#x000A;})</pre>
+    <pre class='small'>JSpec.include({&#x000A;  preprocessing : function(input) {&#x000A;    return input.replace(/(\d+)\.\.(\d+)/g, function(_, start, end){&#x000A;      var current = parseInt(start), end = parseInt(end), values = [current]&#x000A;      if (end &gt; current) while (++current &lt;= end) values.push(current)&#x000A;      else               while (--current &gt;= end) values.push(current)&#x000A;      return &#39;[&#39; + values + &#39;]&#39;&#x000A;    })&#x000A;  }&#x000A;})</pre>
     <div id='more-information'>
       <h2>More Information</h2>
       <ul>
