@@ -159,10 +159,27 @@
 
     %pre.small= example('receive-fail')
     
+    %h2 Fixtures
+    %p JSpec's fixture support is simple, yet elegant and powerful. The fixture() utility works for both Rhino and browsers alike. Paths are resolved as follows: 
+    
+    %p fixture('FILE') 
+    %ul
+      %li 'FILE'
+      %li 'spec/FILE'
+      %li 'spec/fixtures/FILE'
+      %li 'spec/fixtures/FILE.html'
+      
+    %p This means that if you have an html fixture located at 'spec/fixtures/foo.html' you may simply call fixture('foo'), likewise when using other extensions you may simply use fixture('foo.json'). When fixtures reside in different directories this may be specified as well fixture('data/foo.html'), fixture('html/foo.html'), etc.
+    
+    %h2 DOM Testing With jQuery
+    %p When using jQuery it is extremely simple to test how your library interacts with a mock DOM. As you can see below there is no need to add arbitrary elements to your suite HTML, jQuery's constructor will generate the elements from a string or fixture.
+    %pre.small= example('dom')
+    %p 
+      Click to see an example spec suite from the
+      %a{ :href => 'http://gist.github.com/147831' } jQuery.inline-search.js plugin
+    
     %h2 Mock Ajax Requests
-    %p jspec.xhr.js provides the mockRequest() and unmockRequest() utilities. unmockRequest() is automatically
-    called after each spec, so it is usually not called manually. unmockRequest() simply restores the original
-    XMLHttpRequest object. mockRequest() is framework agnostic, however below it is shown in use with jQuery:
+    %p jspec.xhr.js provides the mockRequest() and unmockRequest() utilities. unmockRequest() is automatically called after each spec, so it is usually not called manually. unmockRequest() simply restores the original XMLHttpRequest object. mockRequest() is framework agnostic, however below it is shown in use with jQuery:
     
     %pre.small= example('xhr-jquery')
     

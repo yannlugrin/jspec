@@ -180,10 +180,25 @@
     <pre class='small'>person.should.receive('getPets', 'once').with_args('dogs').and_return(an_instance_of(Array))&#x000A;dogs = person.getDogs()</pre>
     <p>The example below will fail, due to the method being called only once with a string.</p>
     <pre class='small'>person.should.receive('getPets', 'twice').with_args(an_instance_of(String))&#x000A;dogs = person.getPets('dogs') // Passes&#x000A;all  = person.getPets() // Fails</pre>
+    <h2>Fixtures</h2>
+    <p>JSpec's fixture support is simple, yet elegant and powerful. The fixture() utility works for both Rhino and browsers alike. Paths are resolved as follows:</p>
+    <p>fixture('FILE')</p>
+    <ul>
+      <li>'FILE'</li>
+      <li>'spec/FILE'</li>
+      <li>'spec/fixtures/FILE'</li>
+      <li>'spec/fixtures/FILE.html'</li>
+    </ul>
+    <p>This means that if you have an html fixture located at 'spec/fixtures/foo.html' you may simply call fixture('foo'), likewise when using other extensions you may simply use fixture('foo.json'). When fixtures reside in different directories this may be specified as well fixture('data/foo.html'), fixture('html/foo.html'), etc.</p>
+    <h2>DOM Testing With jQuery</h2>
+    <p>When using jQuery it is extremely simple to test how your library interacts with a mock DOM. As you can see below there is no need to add arbitrary elements to your suite HTML, jQuery's constructor will generate the elements from a string or fixture.</p>
+    <pre class='small'>describe 'DOM'&#x000A;  before_each&#x000A;    // Load spec/fixtures/user-ul-list.html fixture&#x000A;    list = $(fixture('user-ul-list'))&#x000A;  end&#x000A;  &#x000A;  describe 'jQuery.hide()'&#x000A;    it 'hide elements'&#x000A;      list.hide().should.be_hidden&#x000A;    end&#x000A;  end&#x000A;end</pre>
+    <p>
+      Click to see an example spec suite from the
+      <a href='http://gist.github.com/147831'>jQuery.inline-search.js plugin</a>
+    </p>
     <h2>Mock Ajax Requests</h2>
-    <p>jspec.xhr.js provides the mockRequest() and unmockRequest() utilities. unmockRequest() is automatically</p>
-    called after each spec, so it is usually not called manually. unmockRequest() simply restores the original
-    XMLHttpRequest object. mockRequest() is framework agnostic, however below it is shown in use with jQuery:
+    <p>jspec.xhr.js provides the mockRequest() and unmockRequest() utilities. unmockRequest() is automatically called after each spec, so it is usually not called manually. unmockRequest() simply restores the original XMLHttpRequest object. mockRequest() is framework agnostic, however below it is shown in use with jQuery:</p>
     <pre class='small'>describe 'Something'&#x000A;  before_each&#x000A;    mockRequest().and_return('{ foo : "bar" }', 'application/json')&#x000A;  end&#x000A;  &#x000A;  it 'should foo'&#x000A;    $.getJSON('foo', function(response){&#x000A;      response.foo.should.eql 'bar'&#x000A;    })&#x000A;  end&#x000A;end</pre>
     <h2>Extending JSpec With Modules</h2>
     <p>JSpec's Modules take the form of a simple JavaScript object or 'hash', allowing you to add matchers</p>

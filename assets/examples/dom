@@ -1,0 +1,12 @@
+describe 'DOM'
+  before_each
+    // Load spec/fixtures/user-ul-list.html fixture
+    list = $(fixture('user-ul-list'))
+  end
+  
+  describe 'jQuery.hide()'
+    it 'hide elements'
+      list.hide().should.be_hidden
+    end
+  end
+end
