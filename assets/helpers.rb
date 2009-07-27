@@ -9,7 +9,7 @@ end
 
 def example file, escape = false
   contents = File.read File.dirname(__FILE__) + '/examples/' + file
-  contents = contents.escape_html
+  contents = contents.escape_html if escape
   contents
 end
 

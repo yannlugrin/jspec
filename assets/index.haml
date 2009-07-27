@@ -37,6 +37,7 @@
         %li Allows parens to be optional when using matchers to increase readability
         %li Assertion graphs displaying how many, and which assertions passed or failed
         %li Async support
+        %li Mock Ajax
         %li Fixture support
         %li Modular extensibility via Modules and hooks.
         %li Cascading before/after/before_each/after_each hooks
@@ -157,6 +158,13 @@
     %p The example below will fail, due to the method being called only once with a string.
 
     %pre.small= example('receive-fail')
+    
+    %h2 Mock Ajax Requests
+    %p jspec.xhr.js provides the mockRequest() and unmockRequest() utilities. unmockRequest() is automatically
+    called after each spec, so it is usually not called manually. unmockRequest() simply restores the original
+    XMLHttpRequest object. mockRequest() is framework agnostic, however below it is shown in use with jQuery:
+    
+    %pre.small= example('xhr-jquery')
     
     %h2 Extending JSpec With Modules
     %p JSpec's Modules take the form of a simple JavaScript object or 'hash', allowing you to add matchers

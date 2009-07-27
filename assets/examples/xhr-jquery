@@ -1,0 +1,11 @@
+describe 'Something'
+  before_each
+    mockRequest().and_return('{ foo : "bar" }', 'application/json')
+  end
+  
+  it 'should foo'
+    $.getJSON('foo', function(response){
+      response.foo.should.eql 'bar'
+    })
+  end
+end
