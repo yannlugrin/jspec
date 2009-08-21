@@ -1,6 +1,6 @@
 describe 'Something'
   before_each
-    mockRequest().and_return('{ foo : "bar" }', 'application/json')
+    mock_request().and_return('{ foo : "bar" }', 'application/json')
   end
   
   it 'should foo'
