@@ -1,11 +1,32 @@
 # Refresh suites when any JavaScript is altered
 $ jspec
 
-# Run suites once
+# View help
+$ jspec help
+
+# View command specific help
+$ jspec help run
+
+# Run suites once in the default browser (Safari)
 $ jspec run
+
+# Run suites once in the browsers passed
+$ jspec run --browsers Firefox,Explorer,Opera
+
+# Alternate naming
+$ jspec run --browsers ff,ie,opera
 
 # Refresh suites when altered in a custom suite path, in several browsers
 $ jspec spec/run-suites.html --browsers Safari,Firefox
 
-# Run Rack server in several browsers
-$ jspec --server --browsers Safari,Opera,Firefox
+# Run custom suite path once
+$jspec run spec/some-suite.html
+
+# Run Ruby server in several browsers (reports back to terminal)
+$ jspec run --server --browsers Safari,Opera,Firefox
+
+# Run Ruby server in all supported browsers
+$ jspec run --server
+
+# Run suites using Rhino
+$ jspec run --rhino
