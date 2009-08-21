@@ -125,9 +125,10 @@ JSpec.options hash, by passing string-based option values via the
 query string, or passing a hash to run(). For example 
 JSpec.options.failuresOnly = true, and ?failuresOnly=1 will both work.
 
-* profile {bool} when enabled, uses console.time() in order to display performance information in your console log as specs are completed. (DOM, Console)
-* failuresOnly {bool} displays only failing specs, making them quick to discover and fix (DOM, Terminal)
-* reportToId {string} an element id to report to when using the DOM formatter (DOM)
+* profile       {bool} when enabled, uses console.time() in order to display performance information in your console log as specs are completed. (DOM, Console)
+* failuresOnly {bool} displays only failing specs, making them quick to discover and fix (DOM, Terminal, Server)
+* reportToId   {string} an element id to report to when using the DOM formatter (DOM)
+* verbose      {bool} verbose server output, defaults to false (Server)
   
 == Matchers
 
@@ -242,9 +243,9 @@ on any object when using the JSpec grammar:
 
   * Core
 
-  - an_instance_of   used in conjunction with the 'receive' matcher
-  - mockRequest      mock a request (requires jspec.xhr.js)
-  - unmockRequest    unmock requests (requests jspec.xhr.js)
+  - an_instance_of                 used in conjunction with the 'receive' matcher
+  - mockRequest, mock_request      mock a request (requires jspec.xhr.js)
+  - unmockRequest, unmock_request  unmock requests (requests jspec.xhr.js)
                 
   * jQuery      
                 
@@ -545,7 +546,6 @@ anything that has been done by a Module.
   - loading(file)                    : loading a file                                   : returning 'stop' will prevent loading
   - executing(file)                  : executing a file                                 : returning 'stop' will prevent execution 
   - posting(data, url)               : posting data to a url                            : returning 'stop' will prevent request
-  - reportingToServer(url)           : reporting to server url                          : returning 'stop' will prevent reporting to server
   - preprocessing(input)             : before input string is preprocessed              : return input string for next hook to preprocess
   - stubbing(object, method, result) : called when stubbing an object's method, and return value (result). : (no return value)
   - requiring(dependency, message)   : requiring a dependency                           : (no return value) 
@@ -631,13 +631,35 @@ back to the terminal. It is essentially the same as using the DOM formatter
 and auto-testing each browser, however results are centralized to the terminal,
 removing the need to manually view each browser's output.
 
-Initialize project with:
-  $ jspec init myproject 
+When utilizing the server if a file named spec/jspec.rb (or jspec/jspec.rb for rails)
+is present, then it will be loaded before the server is started. This allows you to
+add Sinatra routes, support additional Browsers, etc.
 
-Run with:
+Run with all supported browsers:
   $ jspec run --server
   
+Run with specific browsers:
+  $ jspec run --browsers Safari,Firefox,Chrome,Explorer
   
+Run with alternative browser names:
+  $ jspec run --browsers safari,ff,chrome,ie
+  
+Browsers supported in core:
+  Browser::Safari
+  Browser::Chrome
+  Browser::Opera
+  Browser::Firefox
+  Browser::IE
+  
+Supplied routes:
+  /slow/NUMBER
+  /status/NUMBER
+  
+For example $.get('/slow/4', function(){}) will take 4 seconds
+to reply, where as $.get('/status/404', function(){}) will respond
+with an 404 status code. Add additional Sinatra routes to the jspec.rb
+file to add your own functionality.
+
 == Ruby on Rails
 
 No additional gems are required for JSpec to work with rails, although 
@@ -676,6 +698,10 @@ Or run via the terminal using Rhino:
   stub(object, 'getContentsOfURL').and_return(function(url){
     return 'html'
   })
+  
+== Additional JSpec Modules
+
+* JSocka stubbing http://github.com/gisikw/jsocka/tree/master
   
 == More Information
 
