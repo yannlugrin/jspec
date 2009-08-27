@@ -10,11 +10,7 @@ describe 'poll()'
     poll('http://vision-media.ca', function(){
       ++called
     })
-    tick(1000)
-    called.should.eql 0
-    tick(1000)
-    called.should.eql 1
-    tick(6000)
+    tick(8000)
     called.should.eql 4
   end
 end
