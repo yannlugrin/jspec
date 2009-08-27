@@ -200,6 +200,19 @@
     <h2>Mock Ajax Requests</h2>
     <p>jspec.xhr.js provides the mockRequest() and unmockRequest() utilities. unmockRequest() is automatically called after each spec, so it is usually not called manually. unmockRequest() simply restores the original XMLHttpRequest object. mockRequest() is framework agnostic, however below it is shown in use with jQuery:</p>
     <pre class='small'>describe 'Something'&#x000A;  before_each&#x000A;    mock_request().and_return('{ foo : "bar" }', 'application/json')&#x000A;  end&#x000A;  &#x000A;  it 'should foo'&#x000A;    $.getJSON('foo', function(response){&#x000A;      response.foo.should.eql 'bar'&#x000A;    })&#x000A;  end&#x000A;end</pre>
+    <h2>Async Support With Mock Timers</h2>
+    <p>
+      The JavaScript mock timer library
+      <a href='http://github.com/visionmedia/js-mock-timers'>http://github.com/visionmedia/js-mock-timers</a>
+      is bundled with JSpec and is located at 'lib/jspec.timers.js'.
+    </p>
+    <p>Timers return ids as expected, which may be terminated when passed to clearInterval() however mock timers</p>
+    require manual scheduling and progression via the tick() function.
+    <pre class='small'>setTimeout(function(){&#x000A;  alert('Wahoo!')&#x000A;}, 400)&#x000A;&#x000A;tick(200) // Nothing happens&#x000A;tick(400) // Wahoo!</pre>
+    <p>When using setInterval(), providing a large millisecond increment to tick() all callbacks which have not had a change to 'catch up' may be called several times as conveyed in the example below.</p>
+    <pre class='small'>progress = ''&#x000A;var id = setInterval(function(){&#x000A;  progress += '.'&#x000A;}, 100)&#x000A;&#x000A;tick(50),  print(progress) // ''&#x000A;tick(50),  print(progress) // '.'&#x000A;tick(100), print(progress) // '..'&#x000A;tick(100), print(progress) // '...'&#x000A;tick(300), print(progress) // '......'&#x000A;&#x000A;clearInterval(id)&#x000A;&#x000A;tick(800) // Nothing happens</pre>
+    <p>Finally a practical example:</p>
+    <pre class='small'>function poll(uri, fn) {&#x000A;  setInterval(fn || function() {&#x000A;    // ... xhr request&#x000A;  }, 2000)&#x000A;}&#x000A;&#x000A;describe 'poll()'&#x000A;  it 'should poll a uri every 2 seconds'&#x000A;    called = 0&#x000A;    poll('http://vision-media.ca', function(){&#x000A;      ++called&#x000A;    })&#x000A;    tick(1000)&#x000A;    called.should.eql 0&#x000A;    tick(1000)&#x000A;    called.should.eql 1&#x000A;    tick(6000)&#x000A;    called.should.eql 4&#x000A;  end&#x000A;end</pre>
     <h2>Extending JSpec With Modules</h2>
     <p>JSpec's Modules take the form of a simple JavaScript object or 'hash', allowing you to add matchers</p>
     define dependencies, add utility functions, implement hook callbacks and more. Below is an example module

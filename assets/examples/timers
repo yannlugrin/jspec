@@ -1,0 +1,20 @@
+function poll(uri, fn) {
+  setInterval(fn || function() {
+    // ... xhr request
+  }, 2000)
+}
+
+describe 'poll()'
+  it 'should poll a uri every 2 seconds'
+    called = 0
+    poll('http://vision-media.ca', function(){
+      ++called
+    })
+    tick(1000)
+    called.should.eql 0
+    tick(1000)
+    called.should.eql 1
+    tick(6000)
+    called.should.eql 4
+  end
+end

@@ -1,0 +1,14 @@
+progress = ''
+var id = setInterval(function(){
+  progress += '.'
+}, 100)
+
+tick(50),  print(progress) // ''
+tick(50),  print(progress) // '.'
+tick(100), print(progress) // '..'
+tick(100), print(progress) // '...'
+tick(300), print(progress) // '......'
+
+clearInterval(id)
+
+tick(800) // Nothing happens

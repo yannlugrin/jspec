@@ -1,0 +1,6 @@
+setTimeout(function(){
+  alert('Wahoo!')
+}, 400)
+
+tick(200) // Nothing happens
+tick(400) // Wahoo!

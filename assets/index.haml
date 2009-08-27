@@ -183,6 +183,26 @@
     
     %pre.small= example('xhr-jquery')
     
+    %h2 Async Support With Mock Timers
+    
+    %p 
+      The JavaScript mock timer library 
+      %a{ :href => 'http://github.com/visionmedia/js-mock-timers' } http://github.com/visionmedia/js-mock-timers
+      is bundled with JSpec and is located at 'lib/jspec.timers.js'.
+      
+    %p Timers return ids as expected, which may be terminated when passed to clearInterval() however mock timers
+    require manual scheduling and progression via the tick() function.
+    
+    %pre.small= example('timers-timeout')
+    
+    %p When using setInterval(), providing a large millisecond increment to tick() all callbacks which have not had a change to 'catch up' may be called several times as conveyed in the example below.
+    
+    %pre.small= example('timers-interval')
+    
+    %p Finally a practical example:
+    
+    %pre.small= example('timers')
+    
     %h2 Extending JSpec With Modules
     %p JSpec's Modules take the form of a simple JavaScript object or 'hash', allowing you to add matchers
     define dependencies, add utility functions, implement hook callbacks and more. Below is an example module
