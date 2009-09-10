@@ -1,4 +1,9 @@
 
+=== 2.11.1 / 2009-09-10
+
+* Fixed JSpec root when using --symlink, --freeze [#36]
+* Added __END__ to the grammar (works like Ruby's __END__)
+
 === 2.11.0 / 2009-09-04
 
 * Added --symlink switch (links the current version of JSpec to ./spec/lib) [#4]
