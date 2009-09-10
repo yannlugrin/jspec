@@ -249,9 +249,9 @@ end
 
 def replace_root_in dest, *paths
   if rails? && File.exist?("#{dest}/jspec/lib")
-    root = "."
+    root = './spec/jspec'
   elsif File.exist?("#{dest}/spec/lib")
-    root = "."
+    root = "./spec"
   else
     root = JSPEC_ROOT
   end
