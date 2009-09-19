@@ -224,8 +224,8 @@
       <a href='http://gist.github.com/147831'>jQuery.inline-search.js plugin</a>
     </p>
     <h2>Mock Ajax Requests</h2>
-    <p>jspec.xhr.js provides the mockRequest() and unmockRequest() utilities. unmockRequest() is automatically called after each spec, so it is usually not called manually. unmockRequest() simply restores the original XMLHttpRequest object. mockRequest() is framework agnostic, however below it is shown in use with jQuery:</p>
-    <pre class='small'>describe 'Something'&#x000A;  before_each&#x000A;    mock_request().and_return('{ foo : "bar" }', 'application/json')&#x000A;  end&#x000A;  &#x000A;  it 'should foo'&#x000A;    $.getJSON('foo', function(response){&#x000A;      response.foo.should.eql 'bar'&#x000A;    })&#x000A;  end&#x000A;end</pre>
+    <p>jspec.xhr.js provides the mock_request() and unmock_request() utilities. unmock_request() is automatically called after each spec, so it is usually not called manually. unmock_request() simply restores the original XMLHttpRequest object. mock_request() is framework agnostic, however below it is shown in use with jQuery:</p>
+    <pre class='small'>describe 'Something'&#x000A;  before_each&#x000A;    // type and status are optional&#x000A;    mock_request().and_return('{ foo : "bar" }', 'application/json', 200)&#x000A;  end&#x000A;  &#x000A;  it 'should foo'&#x000A;    $.getJSON('foo', function(response){&#x000A;      response.foo.should.eql 'bar'&#x000A;    })&#x000A;  end&#x000A;end</pre>
     <h2>Async Support With Mock Timers</h2>
     <p>
       The JavaScript mock timer library

@@ -198,7 +198,7 @@
       %a{ :href => 'http://gist.github.com/147831' } jQuery.inline-search.js plugin
     
     %h2 Mock Ajax Requests
-    %p jspec.xhr.js provides the mockRequest() and unmockRequest() utilities. unmockRequest() is automatically called after each spec, so it is usually not called manually. unmockRequest() simply restores the original XMLHttpRequest object. mockRequest() is framework agnostic, however below it is shown in use with jQuery:
+    %p jspec.xhr.js provides the mock_request() and unmock_request() utilities. unmock_request() is automatically called after each spec, so it is usually not called manually. unmock_request() simply restores the original XMLHttpRequest object. mock_request() is framework agnostic, however below it is shown in use with jQuery:
     
     %pre.small= example('xhr-jquery')
     
