@@ -1,4 +1,8 @@
 
+=== 2.11.2 / 2009-09-21
+
+* Fixed example path in rails template
+
 === 2.11.1 / 2009-09-10
 
 * Fixed JSpec root when using --symlink, --freeze [#36]
