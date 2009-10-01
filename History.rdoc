@@ -1,4 +1,9 @@
 
+=== 2.11.3 / 2009-09-30
+
+* Updated to mock timers 1.0.1
+  fixes an issue where setTimeout(function(){}, 0); tick(100) is never called
+
 === 2.11.2 / 2009-09-21
 
 * Fixed example path in rails template
