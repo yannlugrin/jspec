@@ -264,12 +264,12 @@ def replace_root_in dest, *paths
 end
 
 ##
-# Update JSpec version in _paths_. Matches visionmedia-jspec-TRIPLE
+# Update JSpec version in _paths_. Matches jspec-TRIPLE
 
 def update_version_in *paths
   paths.each do |path|
     next unless File.exists? path
-    contents = File.read(path).gsub /visionmedia-jspec-(\d+\.\d+\.\d+)/, "visionmedia-jspec-#{program(:version)}"
+    contents = File.read(path).gsub /jspec-(\d+\.\d+\.\d+)/, "jspec-#{program(:version)}"
     File.open(path, 'r+'){ |file| file.write contents } 
     say "Updated #{path}; #{$1} -> #{program(:version)}"
   end
