@@ -1,4 +1,8 @@
 
+=== 2.11.5 / 2009-10-10
+
+* Fixed dependencies (created by github's gem builder removal)
+
 === 2.11.4 / 2009-10-10
 
 * Updated installation docs
