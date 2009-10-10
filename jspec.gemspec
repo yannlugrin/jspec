@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{jspec}
-  s.version = "2.11.3"
+  s.version = "2.11.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 1.2") if s.respond_to? :required_rubygems_version=
   s.authors = ["TJ Holowaychuk"]
-  s.date = %q{2009-09-30}
+  s.date = %q{2009-10-10}
   s.default_executable = %q{jspec}
   s.description = %q{JavaScript BDD Testing Framework}
   s.email = %q{tj@vision-media.ca}
@@ -27,18 +27,18 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<sinatra>, [">= 0"])
       s.add_runtime_dependency(%q<json>, [">= 0"])
-      s.add_runtime_dependency(%q<visionmedia-commander>, [">= 3.2.9"])
-      s.add_runtime_dependency(%q<visionmedia-bind>, [">= 0.2.6"])
+      s.add_runtime_dependency(%q<commander>, [">= 3.2.9"])
+      s.add_runtime_dependency(%q<bind>, [">= 0.2.6"])
     else
       s.add_dependency(%q<sinatra>, [">= 0"])
       s.add_dependency(%q<json>, [">= 0"])
-      s.add_dependency(%q<visionmedia-commander>, [">= 3.2.9"])
-      s.add_dependency(%q<visionmedia-bind>, [">= 0.2.6"])
+      s.add_dependency(%q<commander>, [">= 3.2.9"])
+      s.add_dependency(%q<bind>, [">= 0.2.6"])
     end
   else
     s.add_dependency(%q<sinatra>, [">= 0"])
     s.add_dependency(%q<json>, [">= 0"])
-    s.add_dependency(%q<visionmedia-commander>, [">= 3.2.9"])
-    s.add_dependency(%q<visionmedia-bind>, [">= 0.2.6"])
+    s.add_dependency(%q<commander>, [">= 3.2.9"])
+    s.add_dependency(%q<bind>, [">= 0.2.6"])
   end
 end

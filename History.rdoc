@@ -1,4 +1,9 @@
 
+=== 2.11.4 / 2009-10-10
+
+* Updated installation docs
+* Removed namespaced dependencies (thanks alot github...)
+
 === 2.11.3 / 2009-09-30
 
 * Updated to mock timers 1.0.1
