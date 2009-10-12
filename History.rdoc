@@ -1,4 +1,14 @@
 
+=== 2.11.6 / 2009-10-12
+
+* Added Tony to contributor list
+* Removed JSpec.paramsFor()
+* Removed module contexts [#72]
+* Fixed some css styling issues in IE8 [#71]
+* Fixed; DOM formatter supporting \r\n \r \n for EOL in the body source [Thanks Tony]
+* Fixed "Access is denied" error in IE
+* Fixed some css support for older browsers [Thanks Tony]
+
 === 2.11.5 / 2009-10-10
 
 * Fixed dependencies (created by github's gem builder removal)
