@@ -1,4 +1,10 @@
 
+=== 2.11.7 / 2009-10-15
+
+* Fixed minor grammar issues for windows users [thanks Tony]
+* Fixes installation issue when XCode is not present; changed dependency json -> json_pure [thanks esbie]
+* Fixed Chrome#visit; latest builds of Chrome for the mac are now "Google Chrome"
+
 === 2.11.6 / 2009-10-12
 
 * Added Tony to contributor list

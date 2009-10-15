@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{jspec}
-  s.version = "2.11.6"
+  s.version = "2.11.7"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 1.2") if s.respond_to? :required_rubygems_version=
   s.authors = ["TJ Holowaychuk"]
-  s.date = %q{2009-10-12}
+  s.date = %q{2009-10-15}
   s.default_executable = %q{jspec}
   s.description = %q{JavaScript BDD Testing Framework}
   s.email = %q{tj@vision-media.ca}
@@ -26,18 +26,18 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<sinatra>, [">= 0"])
-      s.add_runtime_dependency(%q<json>, [">= 0"])
+      s.add_runtime_dependency(%q<json_pure>, [">= 0"])
       s.add_runtime_dependency(%q<commander>, [">= 4.0.0"])
       s.add_runtime_dependency(%q<bind>, [">= 0.2.8"])
     else
       s.add_dependency(%q<sinatra>, [">= 0"])
-      s.add_dependency(%q<json>, [">= 0"])
+      s.add_dependency(%q<json_pure>, [">= 0"])
       s.add_dependency(%q<commander>, [">= 4.0.0"])
       s.add_dependency(%q<bind>, [">= 0.2.8"])
     end
   else
     s.add_dependency(%q<sinatra>, [">= 0"])
-    s.add_dependency(%q<json>, [">= 0"])
+    s.add_dependency(%q<json_pure>, [">= 0"])
     s.add_dependency(%q<commander>, [">= 4.0.0"])
     s.add_dependency(%q<bind>, [">= 0.2.8"])
   end
