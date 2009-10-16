@@ -1,4 +1,10 @@
 
+=== 2.11.9 / 2009-10-16
+
+* Fixed puts() with jQuery instance without .selector should output outerHTML, not innerHTML
+* Fixed some specs breaking when using Env.js
+* Fixed Env.js support
+
 === 2.11.8 / 2009-10-16
 
 * Fixed newline support in grammar (supports \r\n, \n, \r)

@@ -26,6 +26,7 @@ spec/fixtures/test.html
 spec/fixtures/test.json
 spec/fixtures/test.xml
 spec/helpers.js
+spec/jquery.js
 spec/server.rb
 spec/spec.dom.html
 spec/spec.fixtures.js
