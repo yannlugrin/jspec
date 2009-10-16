@@ -1,4 +1,9 @@
 
+=== 2.11.8 / 2009-10-16
+
+* Fixed newline support in grammar (supports \r\n, \n, \r)
+* Fixed tabs in grammar [#11]
+
 === 2.11.7 / 2009-10-15
 
 * Fixed minor grammar issues for windows users [thanks Tony]
