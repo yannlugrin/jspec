@@ -13,7 +13,7 @@ and much more.
 * Modular via JSpec Module's and hooks
 * Mock Ajax Requests
 * Rhino support
-* Node.js support
+* Env.js support
 * Async support
 * Fixture support
 * Ruby JavaScript testing server
