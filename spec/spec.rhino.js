@@ -1,4 +1,5 @@
 
+load('spec/env.js')
 load('lib/jspec.js')
 load('lib/jspec.xhr.js')
 load('spec/helpers.js')
