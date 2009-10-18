@@ -25,6 +25,9 @@ $jspec run spec/some-suite.html
 # Run Ruby server in several browsers (reports back to terminal)
 $ jspec run --server --browsers Safari,Opera,Firefox
 
+$ Lowercase works too!
+$ jspec run --server --browsers safari,opera,ff,chrome
+
 # Run Ruby server in all supported browsers
 $ jspec run --server
 

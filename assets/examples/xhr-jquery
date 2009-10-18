@@ -1,7 +1,7 @@
 describe 'Something'
   before_each
-    // type and status are optional
-    mock_request().and_return('{ foo: "bar" }', 'application/json', 200)
+    // type, status, and headers are optional
+    mock_request().and_return('{ foo: "bar" }', 'application/json', 200, { Accept: 'foo' })
   end
   
   it 'should foo'
