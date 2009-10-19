@@ -790,6 +790,7 @@ JSpec more enjoyable, and bug free ;)
 
 * Lawrence Pit
 * mpd@jesters-court.ne
+* Sarah Brown
 * kevin.gisi@gmail.com
 * tony_t_tubbs@yahoo.com
 * enno84@gmx.net
