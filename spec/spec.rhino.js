@@ -21,4 +21,3 @@ JSpec
 .exec('spec/spec.jquery.xhr.js')
 .run({ formatter: JSpec.formatters.Terminal, failuresOnly: true })
 .report()
-
