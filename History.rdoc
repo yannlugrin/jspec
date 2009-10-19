@@ -1,4 +1,9 @@
 
+=== 2.11.10 / 2009-10-19
+
+  * Fixed exit status with Terminal reporter [#77] [thanks darxriggs for reporting]
+    This is now fixed when using `jspec run --rhino` as well as `java -jar js.jar spec/spec.rhino.js`.
+
 === 2.11.9 / 2009-10-16
 
 * Fixed puts() with jQuery instance without .selector should output outerHTML, not innerHTML
