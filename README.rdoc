@@ -77,6 +77,13 @@ You may optionally want to use sources in the /pkg directory
 for your project, since it includes compressed alternatives generated
 each release.
 
+== Cheat Sheet
+
+Using the bash cheat sheet library found at http://github.com/visionmedia/ch
+we can get quick cheat sheets for many aspects of development including JSpec!
+
+  $ cd /tmp && git clone git://github.com/visionmedia/ch.git && cd ch && sudo make install && ch jspec
+
 == Example
 
   describe 'ShoppingCart'
