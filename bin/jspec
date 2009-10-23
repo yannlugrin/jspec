@@ -258,7 +258,11 @@ def replace_root_in dest, *paths
   
   paths.each do |path|
     path = File.join dest, path
-    contents = File.read(path).gsub 'JSPEC_ROOT', root
+    if path.include? 'dom'
+      contents = File.read(path).gsub 'JSPEC_ROOT/', ''
+    else
+      contents = File.read(path).gsub 'JSPEC_ROOT', root
+    end
     File.open(path, 'w') { |file| file.write contents }
   end
 end
