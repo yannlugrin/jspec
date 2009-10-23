@@ -1,4 +1,15 @@
 
+2.11.11 / 2009-10-23
+==================
+
+* Added cheat sheet install docs
+* Added Google Group link
+* Added sarah to contrib list
+* Changed Terminal formatter's java.lang.System.exit() -> quit()
+* Removed unnecessary flags from several regexps
+* Fixed DOM paths when using --freeze [#88]
+* Fixed __END__
+
 === 2.11.10 / 2009-10-19
 
 * Fixed exit status with Terminal reporter [#77] [thanks darxriggs for reporting]
