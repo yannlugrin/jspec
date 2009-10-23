@@ -121,6 +121,16 @@ describe 'Grammar'
 		  true.should.be(true);
 		end
 	end
+	
+  describe "with some tabs"
+		before_each
+		  foo = 'baz'
+		end
+    
+    it 'should work'
+      foo.should.eql 'baz'
+    end
+  end
   
   describe 'with nested describe'
     it 'should work'
