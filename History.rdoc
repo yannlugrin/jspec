@@ -1,6 +1,12 @@
 
-2.11.11 / 2009-10-23
-==================
+=== 2.11.12 / 2009-11-12
+
+* Changed; DOM formatter displaying several failure messages when present [#89]
+* Changed; displaying multiple error messages for Terminal formatter
+* Updated mock timers to 1.0.2
+* Fixed receive matcher negation issue with the number of times called [#150]
+
+=== 2.11.11 / 2009-10-23
 
 * Added cheat sheet install docs
 * Added Google Group link
