@@ -812,6 +812,7 @@ JSpec more enjoyable, and bug free ;)
 * tony_t_tubbs@yahoo.com
 * enno84@gmx.net
 * fnando
+* Tobias Svensson
 
 == License 
 
