@@ -259,7 +259,7 @@ def replace_root_in dest, *paths
   paths.each do |path|
     path = File.join dest, path
     if path.include? 'dom'
-      contents = File.read(path).gsub 'JSPEC_ROOT/', ''
+      contents = File.read(path).gsub 'JSPEC_ROOT/', root == JSPEC_ROOT ? "#{JSPEC_ROOT}/" : ''
     else
       contents = File.read(path).gsub 'JSPEC_ROOT', root
     end
