@@ -1,4 +1,9 @@
 
+=== 2.11.13 / 2009-11-22
+
+* Fixed dom template root replacement
+* Added Tobias Svensson to contributor list
+
 === 2.11.12 / 2009-11-12
 
 * Changed; DOM formatter displaying several failure messages when present [#89]
