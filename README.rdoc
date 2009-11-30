@@ -797,6 +797,7 @@ your spec/server.rb file may support additional browsers.
 * Get the TextMate bundle at https://github.com/visionmedia/jspec.tmbundle/tree
 * For more information consult the JSpec source code documentation or visit http://visionmedia.github.com/jspec
 * jQuery + HTML fixture example http://gist.github.com/147831
+* Vim snippits http://github.com/tobiassvn/snipmate-jspec/
 * Follow 'tjholowaychuk' on twitter 
 
 == Contributors
