@@ -1,0 +1,10 @@
+
+describe 'some issue'
+  it 'should work'
+    true.should.be_true
+  end
+end
+
+__END__
+anything here, text,
+code, you name it! :)

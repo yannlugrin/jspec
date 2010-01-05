@@ -276,6 +276,21 @@
     <pre class='small'>'foobar'.should.include('bar')</pre>
     <p>Which is then converted to a literal grammar-less JSpec assertion.</p>
     <pre class='small'>expect('foobar').to(include, 'bar')</pre>
+    <h3>Function Literal</h3>
+    <p>The following are equivalent</p>
+    <pre class='small'>-{ throw 'test' }.should.throw_error</pre>
+    <pre class='small'>function(){ throw 'test' }.should.throw_error</pre>
+    <h3>Range Literal</h3>
+    <p>Below is the inclusive range literal</p>
+    <pre class='small'>1..5</pre>
+    <p>Which expands to</p>
+    <pre class='small'>[1,2,3,4,5]</pre>
+    <p>May be used to create descriptive matchers</p>
+    <pre class='small'>n.should.be_within 5..9</pre>
+    <h3>__END__ Token</h3>
+    <p>Any text placed after the __END__ token is considered irrelevant and is striped out before evaluation. This is sometimes useful for document or code reference while writing specs.</p>
+    <p>For example when writting regression specs it is sometimes useful to paste the issue ticket's comment(s) below this area for reference.</p>
+    <pre class='small'>describe 'some issue'&#x000A;  it 'should work'&#x000A;    true.should.be_true&#x000A;  end&#x000A;end&#x000A;&#x000A;__END__&#x000A;anything here, text,&#x000A;code, you name it! :)</pre>
     <div id='more-information'>
       <h2>More Information</h2>
       <ul>

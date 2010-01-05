@@ -290,6 +290,27 @@
     %p Which is then converted to a literal grammar-less JSpec assertion.
     %pre.small expect('foobar').to(include, 'bar')
     
+    %h3 Function Literal
+    %p The following are equivalent
+    %pre.small -{ throw 'test' }.should.throw_error
+    %pre.small function(){ throw 'test' }.should.throw_error
+    
+    %h3 Range Literal
+    %p Below is the inclusive range literal
+    %pre.small 1..5
+    
+    %p Which expands to
+    %pre.small [1,2,3,4,5]
+    
+    %p May be used to create descriptive matchers
+    %pre.small n.should.be_within 5..9
+    
+    %h3 __END__ Token
+    %p Any text placed after the __END__ token is considered irrelevant and is striped out before evaluation. This is sometimes useful for document or code reference while writing specs.
+    
+    %p For example when writting regression specs it is sometimes useful to paste the issue ticket's comment(s) below this area for reference.
+    %pre.small= example('__END__')
+    
     %div#more-information
       %h2 More Information
       
