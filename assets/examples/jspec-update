@@ -1,4 +1,6 @@
 # Update to the lateast version of JSpec within your spec suite
+# this works with --freeze and --symlink, as well as just a regular
+# project that points to the JSpec gemdir.
 $ jspec update
 
 # Update a specific file
