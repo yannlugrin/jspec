@@ -200,6 +200,14 @@
       %li 
         %strong verbose:
         verbose server output, defaults to false
+        
+    %h2 Growl Support
+    %p
+      JSpec uses the
+      %a{ :href => 'http://github.com/visionmedia/js-growl' } JavaScript Growl
+      library to provide growl support when using Rhino for testing. Simply
+      %em load()
+      jspec.growl.js within spec/rhino.js
 
     %h2 Proxy Assertions or 'Spies'
     %p JSpec's support for proxy assertions allows you to assert that a method is invoked a specific number of times, with specific arguments, returning specific results. In the example below, we assert that <strong>getDogs()</strong> calls <strong>getPets()</strong> with a string of <strong>'dogs'</strong>, and returns an array of dogs. All these assertions must pass in order for the spec to pass.
