@@ -3,3 +3,9 @@ $ jspec init
 
 # Initialize template at ./myproject
 $ jspec init myproject 
+
+# Initialize with a symlink of the current version of JSpec at spec/lib
+$ jspec init --symlink
+
+# Initialize with a localized copy of JSpec at spec/lib
+$ jspec init --freeze

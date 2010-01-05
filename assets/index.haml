@@ -184,6 +184,22 @@
     %pre.small= example('jspec-init')
     %pre.small= example('jspec-update')
     %pre.small= example('jspec-bind')
+    
+    %h2 Options
+    %p The follow options may be passed to JSpec.run()
+    %ul
+      %li
+        %strong fixturePath:
+        a string pointing to the fixture directory (required for fixtures)
+      %li
+        %strong failuresOnly:
+        whether or not to display failing specs only
+      %li 
+        %strong reportToId:
+        an element id for the DOM report to output to, defaults to 'jspec'
+      %li 
+        %strong verbose:
+        verbose server output, defaults to false
 
     %h2 Proxy Assertions or 'Spies'
     %p JSpec's support for proxy assertions allows you to assert that a method is invoked a specific number of times, with specific arguments, returning specific results. In the example below, we assert that <strong>getDogs()</strong> calls <strong>getPets()</strong> with a string of <strong>'dogs'</strong>, and returns an array of dogs. All these assertions must pass in order for the spec to pass.
