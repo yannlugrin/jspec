@@ -233,6 +233,24 @@
       <li>'spec/fixtures/FILE.html'</li>
     </ul>
     <p>This means that if you have an html fixture located at 'spec/fixtures/foo.html' you may simply call fixture('foo'), likewise when using other extensions you may simply use fixture('foo.json'). When fixtures reside in different directories this may be specified as well fixture('data/foo.html'), fixture('html/foo.html'), etc.</p>
+    <h2>Method Stubbing</h2>
+    <p>
+      JSpec provides the
+      <em>stub()</em>
+      function in order to alter a method for the duration of a specification (it block).
+    </p>
+    <pre class='small'>stub(person, 'toString').and_return('Ive been stubbed!')</pre>
+    <p>
+      After a spec has run, JSpec uses
+      <em>destub()</em>
+      to remove a specific stubbed method.
+    </p>
+    <pre class='small'>destub(person, 'toString')</pre>
+    <p>At any time we could destub all stubbed methods for an object</p>
+    <pre class='small'>destub(person)</pre>
+    <p>Alternatively those using the JSpec grammar may use the psuedo methods</p>
+    <pre class='small'>person.stub('age').and_return(22)</pre>
+    <p>Which is then converted to the regular function calls we saw above.</p>
     <h2>DOM Testing With jQuery</h2>
     <p>When using jQuery it is extremely simple to test how your library interacts with a mock DOM. As you can see below there is no need to add arbitrary elements to your suite HTML, jQuery's constructor will generate the elements from a string or fixture.</p>
     <pre class='small'>describe 'DOM'&#x000A;  before_each&#x000A;    // Load spec/fixtures/user-ul-list.html fixture&#x000A;    list = $(fixture('user-ul-list'))&#x000A;  end&#x000A;  &#x000A;  describe 'jQuery.hide()'&#x000A;    it 'hide elements'&#x000A;      list.hide().should.be_hidden&#x000A;    end&#x000A;  end&#x000A;end</pre>

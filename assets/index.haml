@@ -230,6 +230,31 @@
       
     %p This means that if you have an html fixture located at 'spec/fixtures/foo.html' you may simply call fixture('foo'), likewise when using other extensions you may simply use fixture('foo.json'). When fixtures reside in different directories this may be specified as well fixture('data/foo.html'), fixture('html/foo.html'), etc.
     
+    %h2 Method Stubbing
+    %p
+      JSpec provides the
+      %em stub()
+      function in order to alter a method for the duration of a specification (it block).
+      
+    %pre.small stub(person, 'toString').and_return('Ive been stubbed!') 
+    
+    %p 
+      After a spec has run, JSpec uses
+      %em destub()
+      to remove a specific stubbed method.
+    
+    %pre.small destub(person, 'toString')
+    
+    %p At any time we could destub all stubbed methods for an object
+    
+    %pre.small destub(person)
+    
+    %p Alternatively those using the JSpec grammar may use the psuedo methods
+    
+    %pre.small person.stub('age').and_return(22)
+    
+    %p Which is then converted to the regular function calls we saw above.
+    
     %h2 DOM Testing With jQuery
     %p When using jQuery it is extremely simple to test how your library interacts with a mock DOM. As you can see below there is no need to add arbitrary elements to your suite HTML, jQuery's constructor will generate the elements from a string or fixture.
     %pre.small= example('dom')
