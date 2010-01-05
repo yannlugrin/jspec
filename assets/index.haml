@@ -311,6 +311,10 @@
     %p For example when writting regression specs it is sometimes useful to paste the issue ticket's comment(s) below this area for reference.
     %pre.small= example('__END__')
     
+    %h2 Extending the jspec executable
+    %p Both project specific and user specific sub-commands may be used to extend those already provided by jspec. For example add the following to spec/commands/example_commands.rb which is then loaded when jspec is executed. Or place it in ~/jspec/commands
+    %pre.small= example('command')
+    
     %div#more-information
       %h2 More Information
       

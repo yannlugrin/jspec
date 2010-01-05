@@ -291,6 +291,9 @@
     <p>Any text placed after the __END__ token is considered irrelevant and is striped out before evaluation. This is sometimes useful for document or code reference while writing specs.</p>
     <p>For example when writting regression specs it is sometimes useful to paste the issue ticket's comment(s) below this area for reference.</p>
     <pre class='small'>describe 'some issue'&#x000A;  it 'should work'&#x000A;    true.should.be_true&#x000A;  end&#x000A;end&#x000A;&#x000A;__END__&#x000A;anything here, text,&#x000A;code, you name it! :)</pre>
+    <h2>Extending the jspec executable</h2>
+    <p>Both project specific and user specific sub-commands may be used to extend those already provided by jspec. For example add the following to spec/commands/example_commands.rb which is then loaded when jspec is executed. Or place it in ~/jspec/commands</p>
+    <pre class='small'>command :example do |c|&#x000A;  c.syntax = 'jspec example [options]'&#x000A;  c.description = 'Just an example command'&#x000A;  c.option '-f', '--foo string', 'Does some foo with <string>'&#x000A;  c.option '-b', '--bar [string]', 'Does some bar with [string]'&#x000A;  c.example 'Do some foo', 'jspec example --foo bar'&#x000A;  c.example 'Do some bar', 'jspec example --bar'&#x000A;  c.when_called do |args, options|&#x000A;    p args&#x000A;    p options.__hash__&#x000A;    # options.foo&#x000A;    # options.bar&#x000A;    # options.__hash__[:foo]&#x000A;    # options.__hash__[:bar]&#x000A;  end &#x000A;end</pre>
     <div id='more-information'>
       <h2>More Information</h2>
       <ul>
