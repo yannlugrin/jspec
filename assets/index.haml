@@ -276,7 +276,20 @@
     
     %p This implementation would allow '0..5' to be expanded to '[0,1,2,3,4,5]'
     %pre.small= example('module-hook-preprocessing')
-
+    
+    %h2 Grammar Rules
+    %p Below are the conversions made when utilizing the JSpec grammar, literal JavaScript is un-touched.
+    
+    %h3 Assertions
+    %p An assertion without parens
+    %pre.small 'foobar'.should.include 'bar'
+    
+    %p Is converted to include parens
+    %pre.small 'foobar'.should.include('bar')
+    
+    %p Which is then converted to a literal grammar-less JSpec assertion.
+    %pre.small expect('foobar').to(include, 'bar')
+    
     %div#more-information
       %h2 More Information
       

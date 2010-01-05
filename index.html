@@ -267,6 +267,15 @@
     hook callback for the 'preprocessing' hook:
     <p>This implementation would allow '0..5' to be expanded to '[0,1,2,3,4,5]'</p>
     <pre class='small'>JSpec.include({&#x000A;  preprocessing : function(input) {&#x000A;    return input.replace(/(\d+)\.\.(\d+)/g, function(_, start, end){&#x000A;      var current = parseInt(start), end = parseInt(end), values = [current]&#x000A;      if (end > current) while (++current <= end) values.push(current)&#x000A;      else               while (--current >= end) values.push(current)&#x000A;      return '[' + values + ']'&#x000A;    })&#x000A;  }&#x000A;})</pre>
+    <h2>Grammar Rules</h2>
+    <p>Below are the conversions made when utilizing the JSpec grammar, literal JavaScript is un-touched.</p>
+    <h3>Assertions</h3>
+    <p>An assertion without parens</p>
+    <pre class='small'>'foobar'.should.include 'bar'</pre>
+    <p>Is converted to include parens</p>
+    <pre class='small'>'foobar'.should.include('bar')</pre>
+    <p>Which is then converted to a literal grammar-less JSpec assertion.</p>
+    <pre class='small'>expect('foobar').to(include, 'bar')</pre>
     <div id='more-information'>
       <h2>More Information</h2>
       <ul>
