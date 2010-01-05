@@ -9,7 +9,7 @@ a img {
   border: none !important; }
 
 a {
-  text-decoration: none;
+  text-decoration: underline;
   font-weight: bold;
   color: black; }
   a:hover {
