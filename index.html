@@ -224,15 +224,19 @@
     <p>The example below will fail, due to the method being called only once with a string.</p>
     <pre class='small'>person.should.receive('getPets', 'twice').with_args(an_instance_of(String))&#x000A;dogs = person.getPets('dogs') // Passes&#x000A;all  = person.getPets() // Fails</pre>
     <h2>Fixtures</h2>
-    <p>JSpec's fixture support is simple, yet elegant and powerful. The fixture() utility works for both Rhino and browsers alike. Paths are resolved as follows:</p>
+    <p>JSpec's fixture support is simple, yet elegant and powerful. The fixture() utility works for both Rhino, Node and browsers alike. Paths are resolved as follows:</p>
     <p>fixture('FILE')</p>
     <ul>
-      <li>'FILE'</li>
-      <li>'spec/FILE'</li>
-      <li>'spec/fixtures/FILE'</li>
-      <li>'spec/fixtures/FILE.html'</li>
+      <li>fixturePath/FILE</li>
+      <li>fixturePath/FILE.html</li>
     </ul>
     <p>This means that if you have an html fixture located at 'spec/fixtures/foo.html' you may simply call fixture('foo'), likewise when using other extensions you may simply use fixture('foo.json'). When fixtures reside in different directories this may be specified as well fixture('data/foo.html'), fixture('html/foo.html'), etc.</p>
+    <h2>JSON Fixtures</h2>
+    <p>The json_fixture() utility works much like fixture() however will parse JSON, and is resolved as:</p>
+    <ul>
+      <li>fixturePath/FILE</li>
+      <li>fixturePath/FILE.json</li>
+    </ul>
     <h2>Method Stubbing</h2>
     <p>
       JSpec provides the
