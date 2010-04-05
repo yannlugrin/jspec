@@ -30,4 +30,25 @@ describe 'Asynchronous specs'
       end
     end
   end
+
+  describe 'with a deferred function'
+    before_nested
+      a = false
+      defer(-{ a = true })
+    end
+
+    it 'should not be executed'
+      a.should.be_false
+    end
+
+    describe 'and sleep'
+      before_nested
+        sleep(1)
+      end
+
+      it 'should be executed'
+        a.should.be_true
+      end
+    end
+  end
 end
