@@ -51,4 +51,29 @@ describe 'Asynchronous specs'
       end
     end
   end
+
+  describe 'with a condition function'
+    before_nested
+      a = b = false
+      defer(-{ a = true })
+      wait(-{ return a })
+    end
+
+    it 'should wait until the function evaluates to true'
+      a.should.be_true
+      b.should.be_false
+    end
+
+    describe 'and another function'
+      before_nested
+        defer(-{ b = true })
+        wait(-{ return b })
+      end
+
+      it 'should wait until both functions evaluate to true'
+        a.should.be_true
+        b.should.be_true
+      end
+    end
+  end
 end
