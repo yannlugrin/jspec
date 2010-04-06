@@ -36,10 +36,11 @@ describe 'node'
     end
     
     describe 'have_prototype'
-      [].should.have_prototype Array.prototype
-      {}.should.not.have_prototype Array.prototype
-      {}.should.have_prototype Object.prototype
+      it 'should check if the prototypes match'
+        [].should.have_prototype Array.prototype
+        {}.should.not.have_prototype Array.prototype
+        {}.should.have_prototype Object.prototype
+      end
     end
-    
   end
 end

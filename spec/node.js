@@ -15,5 +15,6 @@ JSpec
 .exec('spec/unit/spec.grammar.js')
 .exec('spec/unit/spec.grammar-less.js')
 .exec('spec/unit/spec.fixtures.js')
+.exec('spec/unit/spec.async.js')
 .run({ reporter: JSpec.reporters.Terminal, failuresOnly: true, fixturePath: 'spec/fixtures' })
 .report()
