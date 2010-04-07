@@ -70,6 +70,7 @@ describe 'Asynchronous specs'
           val.should.be_true
         end
       end
+
     end
   end
 end
