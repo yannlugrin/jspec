@@ -32,7 +32,7 @@ describe 'Asynchronous specs'
   end
 
   describe 'with delayed assertions'
-    before_each
+    before_nested
       a = false
       JSpec.setTimeout(-{ a = true }, 15)
     end
@@ -49,9 +49,17 @@ describe 'Asynchronous specs'
       })
     end
 
-    it 'should work with custom syntax'
-      wait 20ms
-        a.should.be_true
+    describe 'with custom syntax'
+      it 'should execute when the interpreter is idle by default'
+        wait
+          a.should.be_false
+        end
+      end
+
+      it 'should execute after a provided delay'
+        wait 20ms
+          a.should.be_true
+        end
       end
     end
   end
