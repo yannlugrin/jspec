@@ -69,5 +69,11 @@ describe 'Asynchronous specs'
         a.should.be_true
       })
     end
+
+    it 'should work with custom syntax'
+      wait 20ms
+        a.should.be_true
+      end
+    end
   end
 end
