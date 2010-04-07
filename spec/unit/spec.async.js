@@ -31,31 +31,10 @@ describe 'Asynchronous specs'
     end
   end
 
-  describe 'with a deferred function'
-    before_nested
-      a = false
-      defer(-{ a = true })
-    end
-
-    it 'should not be executed'
-      a.should.be_false
-    end
-
-    describe 'and sleep'
-      before_nested
-        sleep(1)
-      end
-
-      it 'should be executed'
-        a.should.be_true
-      end
-    end
-  end
-
   describe 'with delayed assertions'
     before_each
       a = false
-      defer(-{ a = true }, 15)
+      JSpec.setTimeout(-{ a = true }, 15)
     end
 
     it 'should execute when the interpreter is idle by default'
