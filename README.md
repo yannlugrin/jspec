@@ -1000,6 +1000,7 @@ missed you on this list please let me know
 - [kevin.gisi@gmail.com](kevin.gisi@gmail.com)
 - [tony_t_tubbs@yahoo.com](tony_t_tubbs@yahoo.com)
 - [enno84@gmx.net](enno84@gmx.net)
+- [Pieter Noordhuis](pcnoordhuis@gmail.com)
 - swalke16
 - fnando
 - Tobias Svensson
