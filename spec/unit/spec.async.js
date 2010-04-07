@@ -52,28 +52,22 @@ describe 'Asynchronous specs'
     end
   end
 
-  describe 'with a condition function'
-    before_nested
-      a = b = false
-      defer(-{ a = true })
-      wait(-{ return a })
+  describe 'with delayed assertions'
+    before_each
+      a = false
+      defer(-{ a = true }, 15)
     end
 
-    it 'should wait until the function evaluates to true'
-      a.should.be_true
-      b.should.be_false
+    it 'should execute when the interpreter is idle by default'
+      wait(-{
+        a.should.be_false
+      })
     end
 
-    describe 'and another function'
-      before_nested
-        defer(-{ b = true })
-        wait(-{ return b })
-      end
-
-      it 'should wait until both functions evaluate to true'
+    it 'should execute after a provided delay'
+      wait(20, -{
         a.should.be_true
-        b.should.be_true
-      end
+      })
     end
   end
 end
