@@ -31,34 +31,43 @@ describe 'Asynchronous specs'
     end
   end
 
-  describe 'with delayed assertions'
-    before_nested
-      a = false
-      JSpec.setTimeout(-{ a = true }, 15)
-    end
-
-    it 'should execute when the interpreter is idle by default'
-      wait(-{
-        a.should.be_false
-      })
-    end
-
-    it 'should execute after a provided delay'
-      wait(20, -{
-        a.should.be_true
-      })
-    end
-
-    describe 'with custom syntax'
-      it 'should execute when the interpreter is idle by default'
-        wait
-          a.should.be_false
-        end
+  describe 'wait()'
+    describe 'when given n milliseconds'
+      it 'should delay assertions'
+        var val = false
+        JSpec.setTimeout(-{ val = true }, 100)
+        wait(100, -{
+          val.should.be_true
+        })
       end
-
-      it 'should execute after a provided delay'
-        wait 20ms
+      
+      it 'should work with multiple wait() calls'
+        var val = false
+        JSpec.setTimeout(-{ val = true }, 100)
+        JSpec.setTimeout(-{ val = false }, 200)
+        wait(100, function(){
+          val.should.be_true
+        })
+        wait(200, function(){
+          val.should.be_false
+        })
+      end
+      
+      it 'should work with multiple timers and long wait()'
+        var a, b
+        JSpec.setTimeout(-{ a = true }, 100)
+        JSpec.setTimeout(-{ b = false }, 200)
+        wait(300, function(){
           a.should.be_true
+          b.should.be_false
+        })
+      end
+      
+      it 'should work with custom grammar syntax'
+        var val = false
+        JSpec.setTimeout(-{ val = true }, 100)
+        wait 100
+          val.should.be_true
         end
       end
     end
