@@ -1,4 +1,18 @@
 describe 'Asynchronous specs'
+  describe 'expecting()'
+    describe 'given the number if assertions expected'
+      it 'should remain in-queue until the assertions have been met'
+        expecting(2)
+        setTimeout(-{
+          true.should.be_true
+        }, 100)
+        setTimeout(-{
+          true.should.be_true
+        }, 200)
+      end
+    end
+  end
+
   describe 'wait()'
     describe 'when given n milliseconds'
       before
