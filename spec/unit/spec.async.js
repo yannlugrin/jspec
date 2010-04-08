@@ -44,11 +44,11 @@ describe 'Asynchronous specs'
       it 'should work with multiple wait() calls'
         var val = false
         JSpec.setTimeout(-{ val = true }, 30)
-        JSpec.setTimeout(-{ val = false }, 30)
+        JSpec.setTimeout(-{ val = false }, 45)
         wait(30, function(){
           val.should.be_true
         })
-        wait(60, function(){
+        wait(30, function(){
           val.should.be_false
         })
       end
