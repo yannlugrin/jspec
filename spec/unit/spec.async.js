@@ -30,6 +30,9 @@ describe 'Asynchronous specs'
           setTimeout(-{
             true.should.be_true
           }, 300)
+          setTimeout(-{
+            true.should.be_true
+          }, 400)
         end
       end
     end
