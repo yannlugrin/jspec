@@ -1,6 +1,17 @@
 describe 'Asynchronous specs'
   describe 'wait()'
     describe 'when given n milliseconds'
+      before
+        called = false
+        wait(300, -{
+          setTimeout(-{ called = true }, 250)
+        })
+      end
+      
+      it 'should work in blocks to prepare specs'
+        called.should.be_true
+      end
+      
       it 'should delay assertions'
         var val = false
         JSpec.setTimeout(-{ val = true }, 20)
