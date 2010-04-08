@@ -23,16 +23,16 @@ describe 'Asynchronous specs'
         end
         
         it 'should fail when passing the timeout'
-          expecting(2, { timeout: 200 })
-          setTimeout(-{
-            true.should.be_true
-          }, 100)
-          setTimeout(-{
-            true.should.be_true
-          }, 300)
-          setTimeout(-{
-            true.should.be_true
-          }, 400)
+          // expecting(2, { timeout: 200 })
+          // setTimeout(-{
+          //   true.should.be_true
+          // }, 100)
+          // setTimeout(-{
+          //   true.should.be_true
+          // }, 300)
+          // setTimeout(-{
+          //   true.should.be_true
+          // }, 400)
         end
       end
     end
