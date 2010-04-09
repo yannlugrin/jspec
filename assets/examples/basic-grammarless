@@ -7,20 +7,20 @@ JSpec.describe('ShoppingCart', function(){
     it('should add a product', function(){
       cart.addProduct('cookie')
       cart.addProduct('icecream')
-      cart.should.have 2, 'products'
+      expect(cart).to(have, 2, 'products')
     })
   })
 
   describe('addProducts', function(){
     it('should add several products', function(){
-      cart.should.receive('addProduct', 'twice').with_args(an_instance_of(String))
+      expect(cart.).to(receive, 'addProduct', 'twice').with_args(an_instance_of(String)))
       cart.addProducts('cookie', 'icecream')
     })
   })
 
   describe('checkout', function(){
     it('throw an error when checking out with no products', function(){
-      -{ cart.clear().checkout() }.should.throw_error CheckoutError, 'No products'
+      expect(function{ cart.clear().checkout() }).to(throw_error, CheckoutError, 'No products')
     })
   })
 })
