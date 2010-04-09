@@ -13,7 +13,7 @@ JSpec.describe('ShoppingCart', function(){
 
   describe('addProducts', function(){
     it('should add several products', function(){
-      expect(cart.).to(receive, 'addProduct', 'twice').with_args(an_instance_of(String)))
+      expect(cart).to(receive, 'addProduct', 'twice').with_args(an_instance_of(String)))
       cart.addProducts('cookie', 'icecream')
     })
   })
